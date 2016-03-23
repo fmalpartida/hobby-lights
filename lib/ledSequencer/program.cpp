@@ -4,23 +4,27 @@
 #include <definedPrograms.hpp>
 #include <Storage.hpp>
 
+// Predefined programs
 static ledSequence *demoSequence[] =
    { program1, program2, program3, program4, program5, program6, program7, program8,
       program9, program10, program1 };
 
 static int sequenceLength;
+
 ledSequence *_myBoard[LEDS_ON_BOARD];
 
 // Private management variables
 static uint8_t _available;  // number of available slots
 static uint8_t _used;       // number of used slots
-static int _period;          // Wait delay after playing the entire sequence
-Storage store;       // Added support for persisten storage
+static int _period;         // Wait delay after playing the entire sequence
+Storage store;              // Added support for persisten storage
 
 static void loadProgramSequence(ledSequence *myProgram);
 static void addSequence(ledSequence *sequence);
 static void clearProgram( );
 
+
+// Public methods
 program::program( )
 {
    _available = LEDS_ON_BOARD;
