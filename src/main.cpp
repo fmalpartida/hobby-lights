@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <program.hpp>
 #include <definedPrograms.hpp>
+#include <Storage.hpp>
 #include <serialMenu.hpp>
 
 //
@@ -10,8 +11,8 @@ ledSequence *demoSequence[] =
 int sequenceLength;
 
 // Cycle through the program with a period of 20ms
-program myProgram(30);
-
+program myProgram(25);
+Storage store;
 
 
 void setup ()
@@ -19,8 +20,11 @@ void setup ()
    Serial.begin(115200);
    sequenceLength = sizeof(demoSequence)/sizeof(ledSequence *);
 
+   store.init();
+
    // Setup initial program
-   myProgram.loadProgram(demoSequence[1]);
+   myProgram.loadProgram(demoSequence[store.getProgram()]);
+
 }
 
 void loop ()
@@ -34,6 +38,7 @@ void loop ()
    if (( newProg >= 0 ) && ( newProg < sequenceLength ) && (newProg != currentProg))
    {
       currentProg = newProg;
-      myProgram.loadProgram(demoSequence[newProg]);
+      store.setProgram(newProg);
+      myProgram.loadProgram(demoSequence[store.getProgram()]);
    }
 }
