@@ -44,12 +44,16 @@ void ledSequence::setLed ( int pin )
 
 void ledSequence::setSequence (uint16_t *sequence, uint8_t length)
 {
+   _bitIndex = 0;
+   _index = 0;
+
    _sequence = sequence;
    _seqLength = length/sizeof(uint16_t);
 }
 
 void ledSequence::playNext ()
 {
+   //Serial.print((_sequence[_index] >> (15-_bitIndex)) & 1 );
    fio_digitalWrite(_register, _IObit, (_sequence[_index] >> (15-_bitIndex)) & 1 );
    _bitIndex = (_bitIndex + 1) % 16;
 

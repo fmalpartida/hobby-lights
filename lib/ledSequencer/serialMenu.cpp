@@ -34,7 +34,7 @@ void command::execute(program *myProgram)
       for (uint16_t i=0; i < numProgs; i++)
       {
          Serial.print(i);
-         Serial.print(" ");
+         Serial.print(". ");
          Serial.println(myProgram->getProgramName(i));
       }
    }
@@ -63,7 +63,7 @@ command *serialMenu::getCommand ( )
       {
          _command.myCommand = SET_PERIOD;
       }
-      if (inChar == 'h')
+      if (inChar == 'l')
       {
          _command.myCommand = LIST_PROGRAMS;
       }
@@ -98,5 +98,5 @@ void serialMenu::printOptions(program *currentProg)
    Serial.println(currentProg->getCurrentProgram());
    Serial.print("\tCurrent Period: ");
    Serial.println(currentProg->getPeriod());
-   Serial.print("Options: p <program id>, f <period>, h (list programs)\n");
+   Serial.print("Options: p <program id>, f <period>, l (list programs)\n");
 }

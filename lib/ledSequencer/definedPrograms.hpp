@@ -1,6 +1,7 @@
 #include <inttypes.h>
 #include <sequences.hpp>
 #include <leds.hpp>
+#include <avr/pgmspace.h>
 
 
 #ifndef __DEFINED_PROGS__
@@ -66,7 +67,7 @@ t_sequenceDesc helicopter[LEDS_ON_BOARD] =
    {LED8, DOUBLE_BLINK_0}
 };
 
-// Emergency car 1
+// Emergency car 1 - 4 fixed, 4 blink
 t_sequenceDesc emergencyCar1[LEDS_ON_BOARD] =
 {
    {LED1, FIXED},
@@ -79,7 +80,7 @@ t_sequenceDesc emergencyCar1[LEDS_ON_BOARD] =
    {LED8, BLINK_90}
 };
 
-// Emergency car 1
+// Emergency car 2 - 4 fixed, 2 blink, 2 fast blink
 t_sequenceDesc emergencyCar2[LEDS_ON_BOARD] =
 {
    {LED1, FIXED},
@@ -88,8 +89,8 @@ t_sequenceDesc emergencyCar2[LEDS_ON_BOARD] =
    {LED4, FIXED},
    {LED5, BLINK_0},
    {LED6, BLINK_90},
-   {LED7, FAST_BLINK_0},
-   {LED8, FAST_BLINK_90}
+   {LED7, FAST_BLINK_LP_0},
+   {LED8, FAST_BLINK_LP_90}
 };
 
 
@@ -133,7 +134,7 @@ t_sequenceDesc diorama1[LEDS_ON_BOARD] =
    {LED8, FIXED}
 };
 
-// Diorama 2 - 2 buring, 2 shots, 3 fixed, 1 burst
+// Diorama 2 - 2 buring, 2 shots, 3 fixed, 1 burst (explosions)
 t_sequenceDesc diorama2[LEDS_ON_BOARD] =
 {
    {LED1, RAND_FLICK_0},
@@ -143,10 +144,10 @@ t_sequenceDesc diorama2[LEDS_ON_BOARD] =
    {LED5, FIXED},
    {LED6, FIXED},
    {LED7, FIXED},
-   {LED8, BURST_0}
+   {LED8, BURSTLP_0}
 };
 
-// Diorama 3 - 2 buring, 2 shots, 2 fixed, 2 burst
+// Diorama 3 - 2 buring, 2 shots, 2 fixed, 2 burst (explosions)
 t_sequenceDesc diorama3[LEDS_ON_BOARD] =
 {
    {LED1, RAND_FLICK_0},
@@ -159,7 +160,20 @@ t_sequenceDesc diorama3[LEDS_ON_BOARD] =
    {LED8, BURST_1_90}
 };
 
-// Blink
+// Diorama 4 - 2 buring, 2 shots, 2 fixed, 2 burst (explosions)
+t_sequenceDesc diorama4[LEDS_ON_BOARD] =
+{
+   {LED1, RAND_FLICK_0},
+   {LED2, RAND_FLICK_180},
+   {LED3, FAST_BLINK_LP_0},
+   {LED4, FAST_BLINK_LP_180},
+   {LED5, FIXED},
+   {LED6, FIXED},
+   {LED7, BURSTLP_0},
+   {LED8, BURSTLP_1_90}
+};
+
+// All blinking blink
 t_sequenceDesc blink[LEDS_ON_BOARD] =
 {
    {LED1, BLINK_0},
@@ -172,26 +186,93 @@ t_sequenceDesc blink[LEDS_ON_BOARD] =
    {LED8, BLINK_0}
 };
 
-t_sequenceDesc chaser[LEDS_ON_BOARD] =
+// Chaser following patern
+t_sequenceDesc chaser1[LEDS_ON_BOARD] =
 {
    {LED1, BLINK_0},
    {LED2, BLINK_90},
    {LED3, BLINK_180},
    {LED4, BLINK_270},
-   {LED5, BLINK_0},
-   {LED6, BLINK_90},
-   {LED7, BLINK_180},
-   {LED8, BLINK_270}
+   {LED5, BLINKP_0},
+   {LED6, BLINKP_90},
+   {LED7, BLINKP_180},
+   {LED8, BLINKP_270}
 };
 
+// Chaser 2
+t_sequenceDesc chaser2[LEDS_ON_BOARD] =
+{
+   {LED1, BLINKP_0},
+   {LED2, BLINKP_90},
+   {LED3, BLINKP_180},
+   {LED4, BLINKP_270},
+   {LED5, BLINKP_0B},
+   {LED6, BLINKP_90B},
+   {LED7, BLINKP_180B},
+   {LED8, BLINKP_270B}
+};
+
+// All flicker random (space craft with may lights of buildings)
+t_sequenceDesc allFlicker[LEDS_ON_BOARD] =
+{
+   {LED1, RAND_FLICK_0},
+   {LED2, RAND_FLICK_180},
+   {LED3, RAND_FLICK_0},
+   {LED4, RAND_FLICK_180},
+   {LED5, RAND_FLICK_0},
+   {LED6, RAND_FLICK_180},
+   {LED7, RAND_FLICK_0},
+   {LED8, RAND_FLICK_180}
+};
+
+t_sequenceDesc user[LEDS_ON_BOARD] =
+{
+   {LED1, FAST_BLINK_LP_0},
+   {LED2, FAST_BLINK_LP_0},
+   {LED3, FAST_BLINK_LP_0},
+   {LED4, FAST_BLINK_LP_0},
+   {LED5, FAST_BLINK_LP_0},
+   {LED6, FAST_BLINK_LP_0},
+   {LED7, FAST_BLINK_LP_0},
+   {LED8, FAST_BLINK_LP_0}
+};
+
+const char fixedDesc[] PROGMEM = "FIXED";
+const char airplane1Desc[] PROGMEM = "AIRPLANE 1";
+const char airplane2Desc[] PROGMEM = "AIRPLANE 2";
+const char helicopterDesc[] PROGMEM = "HELICOPTER";
+const char emergencyCar1Desc[] PROGMEM = "EMERGENCY CAR 1";
+const char emergencyCar2Desc[] PROGMEM = "EMERGENCY CAR 2";
+const char shots1Desc [] PROGMEM = "SHOTS 1";
+const char shots2Desc [] PROGMEM = "SHOTS 2";
+const char diorama1Desc [] PROGMEM = "DIORAMA 1";
+const char diorama2Desc [] PROGMEM = "DIORAMA 2";
+const char diorama3Desc [] PROGMEM = "DIORAMA 3";
+const char diorama4Desc [] PROGMEM = "DIORAMA 4";
+const char blinkDesc[] PROGMEM = "BLINK";
+const char chaser1Desc[] PROGMEM = "CHASER 1";
+const char chaser2Desc[] PROGMEM = "CHASER 2";
+const char allFlickerDesc[] PROGMEM = "ALL FLICKER";
+
+const char userDesc[] PROGMEM = "USER DEFINED";
+
+// Predefined program names
+const char * const names[] PROGMEM =
+{ fixedDesc, airplane1Desc, airplane2Desc, helicopterDesc, emergencyCar1Desc,
+   emergencyCar2Desc, shots1Desc, shots2Desc, diorama1Desc, diorama2Desc, diorama3Desc,
+   diorama4Desc, blinkDesc, chaser1Desc, chaser2Desc, allFlickerDesc,
+
+   userDesc // Last user defined
+};
 
 // Predefined programs
 t_sequenceDesc *demoSequence[] =
-   { allFixed, airplane1, airplane2, helicopter, emergencyCar1, emergencyCar2,
-      gunShot1, gunShot2, diorama1, diorama2, diorama3,blink, chaser };
+{ allFixed, airplane1, airplane2, helicopter, emergencyCar1, emergencyCar2,
+   gunShot1, gunShot2, diorama1, diorama2, diorama3, diorama4, blink, chaser1,
+   chaser2, allFlicker,
 
-const char *names[] =
-{ "FIXED", "AIRPLANE 1", "AIRPLANE 2", "HELICOPTER", "EMERG. CAR 1", "EMERG. CAR 2",
-"SHOTS 1", "SHOTS 2", "DIORAMA 1", "DIORAMA 2", "DIORAMA 3", "BLINK", "CHASER" };
+   user // Last user defined
+};
+
 
 #endif // __DEFINED_PROGS__

@@ -1,8 +1,9 @@
 #include <Arduino.h>
+#include <avr/pgmspace.h>
+
 #include <ledSequence.hpp>
 #include <Storage.hpp>
 #include <program.hpp>
-
 #include <definedPrograms.hpp>
 #include <sequences.hpp>
 
@@ -54,6 +55,7 @@ void program::playProgram( )
       _myChannels[i].playNext();
    }
    delay(_period);
+   //Serial.println();
 }
 
 void program::loadProgram(uint8_t progID)
@@ -99,7 +101,10 @@ uint16_t program::getCurrentProgram()
 
 char *program::getProgramName(uint8_t progID )
 {
-   return ((char *)names[progID]);
+   static char buffer[20];
+   char * ptr = (char *) pgm_read_word (&names[progID]);
+   strcpy_P (buffer, ptr);
+   return (buffer);
 }
 // Private methods
 // -----------------------------------------------------------------------------
