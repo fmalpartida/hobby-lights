@@ -13,10 +13,10 @@ private:
 public:
    Storage();
    void init();
-   int8_t getProgram();
-   void setProgram(int8_t);
-   int8_t getPeriod();
-   void setPeriod(int8_t);
+   uint16_t getProgram();
+   void setProgram(uint16_t);
+   uint16_t getPeriod();
+   void setPeriod(uint16_t);
 };
 
 #endif // __STORAGE__

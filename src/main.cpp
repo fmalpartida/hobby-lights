@@ -4,27 +4,27 @@
 
 
 program myProgram;
+serialMenu myInput;
+
 
 void setup ()
 {
    Serial.begin(115200);
    myProgram.init(0);
+   myInput.printOptions(&myProgram);
+
 }
 
 void loop ()
 {
-   static int currentProg = 0;
-   int newProg;
+   command *newCommand;
 
    myProgram.playProgram();
-   newProg = processSerial();
+   newCommand = myInput.getCommand();
 
-   // If the program has changed, load it and start using it for the next
-   // cycle
-   if (( newProg >= 0 ) && ( newProg < myProgram.getNumPrograms() ) &&
-      (newProg != myProgram.getCurrentProgram()))
+   if ( newCommand != NULL )
    {
-      currentProg = newProg;
-      myProgram.loadProgram(currentProg);
+      newCommand->execute(&myProgram);
+      myInput.printOptions(&myProgram);
    }
 }

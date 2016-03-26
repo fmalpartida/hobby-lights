@@ -1,139 +1,197 @@
 #include <inttypes.h>
 #include <sequences.hpp>
-#include <ledSequence.hpp>
 #include <leds.hpp>
+
 
 #ifndef __DEFINED_PROGS__
 #define __DEFINED_PROGS__
 
 #define SET_SEQUENCE(seq) seq, sizeof(seq)
 
-// All fixed
-ledSequence program1[LEDS_ON_BOARD] =
+typedef struct
 {
-   ledSequence( LED1, SET_SEQUENCE(fixed)),
-   ledSequence( LED2, SET_SEQUENCE(fixed)),
-   ledSequence( LED3, SET_SEQUENCE(fixed)),
-   ledSequence( LED4, SET_SEQUENCE(fixed)),
-   ledSequence( LED5, SET_SEQUENCE(fixed)),
-   ledSequence( LED6, SET_SEQUENCE(fixed)),
-   ledSequence( LED7, SET_SEQUENCE(fixed)),
-   ledSequence( LED8, SET_SEQUENCE(fixed))
+   uint8_t led;
+   uint8_t seqIndex;
+} t_sequenceDesc;
+
+// All fixed
+t_sequenceDesc allFixed[LEDS_ON_BOARD] =
+{
+   {LED1, FIXED},
+   {LED2, FIXED},
+   {LED3, FIXED},
+   {LED4, FIXED},
+   {LED5, FIXED},
+   {LED6, FIXED},
+   {LED7, FIXED},
+   {LED8, FIXED}
 };
 
 // Airplane
-ledSequence program2[LEDS_ON_BOARD] =
+t_sequenceDesc airplane1[LEDS_ON_BOARD] =
 {
-   ledSequence( LED1, SET_SEQUENCE(fixed)),
-   ledSequence( LED2, SET_SEQUENCE(fixed)),
-   ledSequence( LED3, SET_SEQUENCE(fixed)),
-   ledSequence( LED4, SET_SEQUENCE(fixed)),
-   ledSequence( LED5, SET_SEQUENCE(blink0)),
-   ledSequence( LED6, SET_SEQUENCE(randFliker0)),
-   ledSequence( LED7, SET_SEQUENCE(doubleBlink90)),
-   ledSequence( LED8, SET_SEQUENCE(doubleBlink90))
+   {LED1, FIXED},
+   {LED2, FIXED},
+   {LED3, FIXED},
+   {LED4, FIXED},
+   {LED5, RAND_FLICK_0},
+   {LED6, BLINK_0},
+   {LED7, DOUBLE_BLINK_0},
+   {LED8, DOUBLE_BLINK_0}
 };
 
 // Airplane 2
-ledSequence program3[LEDS_ON_BOARD] =
+t_sequenceDesc airplane2[LEDS_ON_BOARD] =
 {
-   ledSequence( LED1, SET_SEQUENCE(fixed)),
-   ledSequence( LED2, SET_SEQUENCE(fixed)),
-   ledSequence( LED3, SET_SEQUENCE(fixed)),
-   ledSequence( LED4, SET_SEQUENCE(fixed)),
-   ledSequence( LED5, SET_SEQUENCE(fixed)),
-   ledSequence( LED6, SET_SEQUENCE(randFliker0)),
-   ledSequence( LED7, SET_SEQUENCE(blink0)),
-   ledSequence( LED8, SET_SEQUENCE(doubleBlink90))
+   {LED1, FIXED},
+   {LED2, FIXED},
+   {LED3, FIXED},
+   {LED4, FIXED},
+   {LED5, RAND_FLICK_0},
+   {LED6, BLINK_0},
+   {LED7, DOUBLE_BLINK_0},
+   {LED8, FIXED}
 };
 
 // Helicopter
-ledSequence program4[LEDS_ON_BOARD] =
+t_sequenceDesc helicopter[LEDS_ON_BOARD] =
 {
-   ledSequence( LED1, SET_SEQUENCE(fixed)),
-   ledSequence( LED2, SET_SEQUENCE(fixed)),
-   ledSequence( LED3, SET_SEQUENCE(fixed)),
-   ledSequence( LED4, SET_SEQUENCE(fixed)),
-   ledSequence( LED5, SET_SEQUENCE(fixed)),
-   ledSequence( LED6, SET_SEQUENCE(fixed)),
-   ledSequence( LED7, SET_SEQUENCE(fixed)),
-   ledSequence( LED8, SET_SEQUENCE(doubleBlink0))
+   {LED1, FIXED},
+   {LED2, FIXED},
+   {LED3, FIXED},
+   {LED4, FIXED},
+   {LED5, FIXED},
+   {LED6, FIXED},
+   {LED7, FIXED},
+   {LED8, DOUBLE_BLINK_0}
 };
 
-// All blinking in pairs of 4
-ledSequence program5[LEDS_ON_BOARD] =
+// Emergency car 1
+t_sequenceDesc emergencyCar1[LEDS_ON_BOARD] =
 {
-   ledSequence( LED1, SET_SEQUENCE(doubleBlink270)),
-   ledSequence( LED2, SET_SEQUENCE(doubleBlink270)),
-   ledSequence( LED3, SET_SEQUENCE(doubleBlink270)),
-   ledSequence( LED4, SET_SEQUENCE(doubleBlink270)),
-   ledSequence( LED5, SET_SEQUENCE(doubleBlink0)),
-   ledSequence( LED6, SET_SEQUENCE(doubleBlink0)),
-   ledSequence( LED7, SET_SEQUENCE(doubleBlink0)),
-   ledSequence( LED8, SET_SEQUENCE(doubleBlink0))
+   {LED1, FIXED},
+   {LED2, FIXED},
+   {LED3, FIXED},
+   {LED4, FIXED},
+   {LED5, BLINK_0},
+   {LED6, BLINK_90},
+   {LED7, BLINK_0},
+   {LED8, BLINK_90}
 };
 
-// All random flicker all
-ledSequence program6[LEDS_ON_BOARD] =
+// Emergency car 1
+t_sequenceDesc emergencyCar2[LEDS_ON_BOARD] =
 {
-   ledSequence( LED1, SET_SEQUENCE(randFliker0)),
-   ledSequence( LED2, SET_SEQUENCE(randFliker0)),
-   ledSequence( LED3, SET_SEQUENCE(randFliker0)),
-   ledSequence( LED4, SET_SEQUENCE(randFliker0)),
-   ledSequence( LED5, SET_SEQUENCE(randFliker0)),
-   ledSequence( LED6, SET_SEQUENCE(randFliker0)),
-   ledSequence( LED7, SET_SEQUENCE(randFliker0)),
-   ledSequence( LED8, SET_SEQUENCE(randFliker0))
+   {LED1, FIXED},
+   {LED2, FIXED},
+   {LED3, FIXED},
+   {LED4, FIXED},
+   {LED5, BLINK_0},
+   {LED6, BLINK_90},
+   {LED7, FAST_BLINK_0},
+   {LED8, FAST_BLINK_90}
 };
 
-// Fast blink
-ledSequence program7[LEDS_ON_BOARD] =
+
+// Gun shot scene 1 all shotting
+t_sequenceDesc gunShot1[LEDS_ON_BOARD] =
 {
-   ledSequence( LED1, SET_SEQUENCE(fastBlink0)),
-   ledSequence( LED2, SET_SEQUENCE(fastBlink0)),
-   ledSequence( LED3, SET_SEQUENCE(fastBlink0)),
-   ledSequence( LED4, SET_SEQUENCE(fastBlink0)),
-   ledSequence( LED5, SET_SEQUENCE(fastBlink0)),
-   ledSequence( LED6, SET_SEQUENCE(fastBlink0)),
-   ledSequence( LED7, SET_SEQUENCE(fastBlink0)),
-   ledSequence( LED8, SET_SEQUENCE(fastBlink0))
+   {LED1, FAST_BLINK_P_0},
+   {LED2, FAST_BLINK_P_90},
+   {LED3, FAST_BLINK_P_180},
+   {LED4, FAST_BLINK_P_270},
+   {LED5, FAST_BLINK_LP_0},
+   {LED6, FAST_BLINK_LP_90},
+   {LED7, FAST_BLINK_LP_180},
+   {LED8, FAST_BLINK_LP_270}
 };
 
-ledSequence program8[LEDS_ON_BOARD] =
+// Gun shot scene 2 - 2 gunshots slow, 2 fire, 2 explosions
+t_sequenceDesc gunShot2[LEDS_ON_BOARD] =
 {
-   ledSequence( LED1, SET_SEQUENCE(fastBlink0)),
-   ledSequence( LED2, SET_SEQUENCE(fastBlink90)),
-   ledSequence( LED3, SET_SEQUENCE(fastBlink180)),
-   ledSequence( LED4, SET_SEQUENCE(fastBlink270)),
-   ledSequence( LED5, SET_SEQUENCE(fastBlink0)),
-   ledSequence( LED6, SET_SEQUENCE(fastBlink90)),
-   ledSequence( LED7, SET_SEQUENCE(fastBlink180)),
-   ledSequence( LED8, SET_SEQUENCE(fastBlink270))
+   {LED1, FAST_BLINK_P_0},
+   {LED2, FAST_BLINK_P_90},
+   {LED3, RAND_FLICK_0},
+   {LED4, BURST_0},
+   {LED5, FAST_BLINK_LP_0},
+   {LED6, FAST_BLINK_LP_90},
+   {LED7, RAND_FLICK_180},
+   {LED8, BURST_0}
+};
+
+
+// Diorama 1 - 4 burning, 4 fixed (urban fire)
+t_sequenceDesc diorama1[LEDS_ON_BOARD] =
+{
+   {LED1, RAND_FLICK_0},
+   {LED2, RAND_FLICK_180},
+   {LED3, RAND_FLICK_0},
+   {LED4, RAND_FLICK_180},
+   {LED5, FIXED},
+   {LED6, FIXED},
+   {LED7, FIXED},
+   {LED8, FIXED}
+};
+
+// Diorama 2 - 2 buring, 2 shots, 3 fixed, 1 burst
+t_sequenceDesc diorama2[LEDS_ON_BOARD] =
+{
+   {LED1, RAND_FLICK_0},
+   {LED2, RAND_FLICK_180},
+   {LED3, FAST_BLINK_P_0},
+   {LED4, FAST_BLINK_P_180},
+   {LED5, FIXED},
+   {LED6, FIXED},
+   {LED7, FIXED},
+   {LED8, BURST_0}
+};
+
+// Diorama 3 - 2 buring, 2 shots, 2 fixed, 2 burst
+t_sequenceDesc diorama3[LEDS_ON_BOARD] =
+{
+   {LED1, RAND_FLICK_0},
+   {LED2, RAND_FLICK_180},
+   {LED3, FAST_BLINK_P_0},
+   {LED4, FAST_BLINK_P_180},
+   {LED5, FIXED},
+   {LED6, FIXED},
+   {LED7, BURST_0},
+   {LED8, BURST_1_90}
 };
 
 // Blink
-ledSequence program9[LEDS_ON_BOARD] =
+t_sequenceDesc blink[LEDS_ON_BOARD] =
 {
-   ledSequence( LED1, SET_SEQUENCE(fastBlinkP0)),
-   ledSequence( LED2, SET_SEQUENCE(fastBlinkP90)),
-   ledSequence( LED3, SET_SEQUENCE(fastBlinkP180)),
-   ledSequence( LED4, SET_SEQUENCE(fastBlinkP270)),
-   ledSequence( LED5, SET_SEQUENCE(fastBlinkBurstLP0)),
-   ledSequence( LED6, SET_SEQUENCE(fastBlinkBurstLP90)),
-   ledSequence( LED7, SET_SEQUENCE(fastBlinkBurstLP180)),
-   ledSequence( LED8, SET_SEQUENCE(fastBlinkBurstLP270))
+   {LED1, BLINK_0},
+   {LED2, BLINK_0},
+   {LED3, BLINK_0},
+   {LED4, BLINK_0},
+   {LED5, BLINK_0},
+   {LED6, BLINK_0},
+   {LED7, BLINK_0},
+   {LED8, BLINK_0}
 };
 
-ledSequence program10[LEDS_ON_BOARD] =
+t_sequenceDesc chaser[LEDS_ON_BOARD] =
 {
-   ledSequence( LED1, SET_SEQUENCE(blink0)),
-   ledSequence( LED2, SET_SEQUENCE(blink0)),
-   ledSequence( LED3, SET_SEQUENCE(blink0)),
-   ledSequence( LED4, SET_SEQUENCE(blink0)),
-   ledSequence( LED5, SET_SEQUENCE(blink0)),
-   ledSequence( LED6, SET_SEQUENCE(blink0)),
-   ledSequence( LED7, SET_SEQUENCE(blink0)),
-   ledSequence( LED8, SET_SEQUENCE(blink0))
+   {LED1, BLINK_0},
+   {LED2, BLINK_90},
+   {LED3, BLINK_180},
+   {LED4, BLINK_270},
+   {LED5, BLINK_0},
+   {LED6, BLINK_90},
+   {LED7, BLINK_180},
+   {LED8, BLINK_270}
 };
+
+
+// Predefined programs
+t_sequenceDesc *demoSequence[] =
+   { allFixed, airplane1, airplane2, helicopter, emergencyCar1, emergencyCar2,
+      gunShot1, gunShot2, diorama1, diorama2, diorama3,blink, chaser };
+
+const char *names[] =
+{ "FIXED", "AIRPLANE 1", "AIRPLANE 2", "HELICOPTER", "EMERG. CAR 1", "EMERG. CAR 2",
+"SHOTS 1", "SHOTS 2", "DIORAMA 1", "DIORAMA 2", "DIORAMA 3", "BLINK", "CHASER" };
 
 #endif // __DEFINED_PROGS__

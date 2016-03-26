@@ -18,7 +18,7 @@ class ledSequence
 public:
    ledSequence();
    ledSequence(int);
-   ledSequence(int pin, uint16_t *sequence, int length);
+   ledSequence(int pin, uint16_t *, int length);
    void setLed ( int pin );
    void setSequence (uint16_t *, uint8_t);
    void playNext (void);

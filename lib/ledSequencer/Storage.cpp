@@ -4,14 +4,14 @@
 
 
 #define SIGNATURE 0xbeaf
-#define STORAGE_VERSION 1
+#define STORAGE_VERSION 2
 
 typedef struct
 {
    uint16_t signature;
    uint8_t version;
-   uint8_t program;
-   uint8_t  period;
+   uint16_t program;
+   uint16_t  period;
 } t_storageContents;
 
 t_storageContents myStore;
@@ -47,7 +47,7 @@ void Storage::init()
 }
 
 // Getters
-int8_t Storage::getProgram()
+uint16_t Storage::getProgram()
 {
    int8_t retVal = -1;
 
@@ -59,9 +59,9 @@ int8_t Storage::getProgram()
    return (retVal);
 }
 
-int8_t Storage::getPeriod()
+uint16_t Storage::getPeriod()
 {
-   int8_t retVal = -1;
+   uint16_t retVal = -1;
 
    // If its initialized, read the contents
    if (_init)
@@ -72,7 +72,7 @@ int8_t Storage::getPeriod()
 }
 
 // Setters
-void Storage::setPeriod(int8_t period)
+void Storage::setPeriod(uint16_t period)
 {
    if (_init)
    {
@@ -81,7 +81,7 @@ void Storage::setPeriod(int8_t period)
    }
 }
 
-void Storage::setProgram(int8_t program)
+void Storage::setProgram(uint16_t program)
 {
    if (_init)
    {

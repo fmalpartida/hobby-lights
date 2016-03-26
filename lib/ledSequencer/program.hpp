@@ -1,22 +1,26 @@
 #include <inttypes.h>
 #include <ledSequence.hpp>
 #include <leds.hpp>
-#include <Storage.hpp>
+
 
 #ifndef __PROGRAM__
 #define __PROGRAM__
 
+
 class program
 {
+
 
 public:
    program();
    void init(int);
    void setPeriod(uint16_t);
-   void loadProgram(uint16_t);
+   uint16_t getPeriod();
+   void loadProgram(uint8_t);
    void playProgram();
-   int getNumPrograms();
-   int getCurrentProgram();
+   uint16_t getNumPrograms();
+   uint16_t getCurrentProgram();
+   char *getProgramName(uint8_t);
 
 
 };

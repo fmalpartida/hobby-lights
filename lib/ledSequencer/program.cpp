@@ -1,35 +1,30 @@
 #include <Arduino.h>
-#include <program.hpp>
 #include <ledSequence.hpp>
-#include <definedPrograms.hpp>
 #include <Storage.hpp>
+#include <program.hpp>
 
-// Predefined programs
-static ledSequence *demoSequence[] =
-   { program1, program2, program3, program4, program5, program6, program7, program8,
-      program9, program10, program1 };
+#include <definedPrograms.hpp>
+#include <sequences.hpp>
+
 
 static int sequenceLength;
 
-ledSequence *_myBoard[LEDS_ON_BOARD];
+// Channels controlled by this program
+ledSequence _myChannels[LEDS_ON_BOARD];
 
-// Private management variables
-static uint8_t _available;  // number of available slots
-static uint8_t _used;       // number of used slots
-static int _period;         // Wait delay after playing the entire sequence
-Storage store;              // Added support for persisten storage
-
-static void loadProgramSequence(ledSequence *myProgram);
-static void addSequence(ledSequence *sequence);
-static void clearProgram( );
+// Private program management variables
+static uint8_t _channelsAvail;  // number of available slots
+static uint8_t _used;           // number of used slots
+static uint16_t _period;        // Wait delay after playing the entire sequence
+Storage store;                  // Added support for persisten storage
 
 
 // Public methods
 program::program( )
 {
-   _available = LEDS_ON_BOARD;
+   _channelsAvail = LEDS_ON_BOARD;
    _used = 0;
-   sequenceLength = sizeof(demoSequence)/sizeof(ledSequence *);
+   sequenceLength = sizeof(demoSequence)/sizeof(t_sequenceDesc *);
 }
 
 void program::init(int period)
@@ -49,64 +44,62 @@ void program::init(int period)
    }
 
    // Setup initial program
-   loadProgramSequence(demoSequence[store.getProgram()]);
+   loadProgram(store.getProgram());
 }
-
 
 void program::playProgram( )
 {
    for ( int i = 0; i < _used ; i++ )
    {
-      _myBoard[i]->playNext();
+      _myChannels[i].playNext();
    }
    delay(_period);
 }
 
-
-void program::loadProgram(uint16_t progID)
+void program::loadProgram(uint8_t progID)
 {
-   loadProgramSequence(demoSequence[progID]);
+   for ( uint8_t i=0; i < LEDS_ON_BOARD; i++)
+   {
+      _myChannels[i].setLed((int)demoSequence[progID][i].led);
+      _myChannels[i].setSequence(sequenceList[demoSequence[progID][i].seqIndex].sequence,
+         sequenceList[demoSequence[progID][i].seqIndex].seqSize);
+      //Serial.print("Program: ");
+      //Serial.println(progID);
+      //Serial.print("LED: ");
+      //Serial.println(demoSequence[progID][i].led);
+      //Serial.print("Sequence: ");
+      //Serial.println( demoSequence[progID][i].seqIndex);
+      //Serial.println( "------");
+   }
+   _used = LEDS_ON_BOARD;
    store.setProgram(progID);
 }
+
 
 void program::setPeriod(uint16_t period)
 {
    _period = period;
+   store.setPeriod(period);
 }
 
-int program::getNumPrograms()
+uint16_t program::getPeriod()
+{
+   return (_period);
+}
+
+uint16_t program::getNumPrograms()
 {
    return(sequenceLength);
 }
 
-int program::getCurrentProgram()
+uint16_t program::getCurrentProgram()
 {
    return (store.getProgram());
 }
 
+char *program::getProgramName(uint8_t progID )
+{
+   return ((char *)names[progID]);
+}
 // Private methods
 // -----------------------------------------------------------------------------
-static void clearProgram( )
-{
-   _used = 0;
-}
-
-static void addSequence(ledSequence *sequence)
-{
-   // If there are LEDs available, add it
-   if ( _used < _available )
-   {
-      _myBoard[_used] = sequence;
-      _used++;
-   }
-}
-
-static void loadProgramSequence(ledSequence *myProgram)
-{
-   clearProgram();
-
-   for ( int i = 0; i < _available; i++ )
-   {
-      addSequence(&myProgram[i]);
-   }
-}
