@@ -10430,7 +10430,7 @@ In this library the device names are the same as the pin names of the symbols, t
 <part name="Q1" library="transistor-pnp" deviceset="BC857*" device="SMD" technology="B"/>
 <part name="SUPPLY8" library="supply2" deviceset="DGND" device=""/>
 <part name="R15" library="rcl" deviceset="R-EU_" device="R0603" value="1K"/>
-<part name="D2" library="diode" deviceset="BAT60J" device=""/>
+<part name="D2" library="diode" deviceset="BAT60J" device="" value="NSR0240HT1G"/>
 <part name="U$12" library="fmc" deviceset="TP_3X2" device=""/>
 <part name="U$13" library="fmc" deviceset="TP_3X2" device=""/>
 <part name="MOT" library="fmc" deviceset="TP_3X2" device=""/>
@@ -10438,7 +10438,7 @@ In this library the device names are the same as the pin names of the symbols, t
 <part name="Q2" library="transistor-pnp" deviceset="BC857*" device="SMD" technology="B"/>
 <part name="SUPPLY9" library="supply2" deviceset="DGND" device=""/>
 <part name="R16" library="rcl" deviceset="R-EU_" device="R0603" value="1K"/>
-<part name="D3" library="diode" deviceset="BAT60J" device=""/>
+<part name="D3" library="diode" deviceset="BAT60J" device="" value="NSR0240HT1G"/>
 <part name="U$14" library="fmc" deviceset="TP_3X2" device=""/>
 <part name="U$15" library="fmc" deviceset="TP_3X2" device=""/>
 <part name="MOT1" library="fmc" deviceset="TP_3X2" device=""/>
@@ -10490,6 +10490,10 @@ In this library the device names are the same as the pin names of the symbols, t
 <text x="340.36" y="241.3" size="2.54" layer="97" ratio="12">Vin</text>
 <text x="299.72" y="228.6" size="2.54" layer="97" ratio="12">Vmot</text>
 <text x="279.4" y="241.3" size="2.54" layer="97" ratio="12">Vin</text>
+<wire x1="381" y1="259.08" x2="259.08" y2="259.08" width="0.6096" layer="97"/>
+<wire x1="259.08" y1="187.96" x2="259.08" y2="259.08" width="0.6096" layer="97"/>
+<wire x1="259.08" y1="187.96" x2="381" y2="187.96" width="0.6096" layer="97"/>
+<wire x1="381" y1="187.96" x2="381" y2="259.08" width="0.6096" layer="97"/>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="111.76" y="33.02"/>
@@ -10616,7 +10620,10 @@ In this library the device names are the same as the pin names of the symbols, t
 <instance part="Q1" gate="G$1" x="347.98" y="226.06"/>
 <instance part="SUPPLY8" gate="G$1" x="350.52" y="208.28"/>
 <instance part="R15" gate="G$1" x="337.82" y="220.98" rot="R90"/>
-<instance part="D2" gate="G$1" x="350.52" y="215.9" rot="R90"/>
+<instance part="D2" gate="G$1" x="350.52" y="215.9" smashed="yes" rot="R90">
+<attribute name="NAME" x="352.552" y="212.979" size="1.778" layer="95"/>
+<attribute name="VALUE" x="352.552" y="216.535" size="1.778" layer="96"/>
+</instance>
 <instance part="U$12" gate="G$1" x="330.2" y="213.36" rot="R90"/>
 <instance part="U$13" gate="G$1" x="358.14" y="213.36" rot="R90"/>
 <instance part="MOT" gate="G$1" x="358.14" y="231.14" rot="R90"/>
@@ -10624,7 +10631,10 @@ In this library the device names are the same as the pin names of the symbols, t
 <instance part="Q2" gate="G$1" x="287.02" y="226.06"/>
 <instance part="SUPPLY9" gate="G$1" x="289.56" y="208.28"/>
 <instance part="R16" gate="G$1" x="276.86" y="220.98" rot="R90"/>
-<instance part="D3" gate="G$1" x="289.56" y="215.9" rot="R90"/>
+<instance part="D3" gate="G$1" x="289.56" y="215.9" smashed="yes" rot="R90">
+<attribute name="NAME" x="291.338" y="213.487" size="1.778" layer="95"/>
+<attribute name="VALUE" x="291.592" y="216.281" size="1.778" layer="96"/>
+</instance>
 <instance part="U$14" gate="G$1" x="269.24" y="213.36" rot="R90"/>
 <instance part="U$15" gate="G$1" x="297.18" y="213.36" rot="R90"/>
 <instance part="MOT1" gate="G$1" x="297.18" y="231.14" rot="R90"/>
