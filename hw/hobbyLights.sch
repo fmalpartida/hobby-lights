@@ -363,6 +363,9 @@
 <text x="-1.27" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
 <rectangle x1="-1.016" y1="-0.508" x2="-0.254" y2="0" layer="21"/>
 </package>
+<package name="TP">
+<smd name="P$1" x="0" y="0" dx="3" dy="2" layer="1"/>
+</package>
 </packages>
 <symbols>
 <symbol name="MCP73831">
@@ -467,6 +470,13 @@
 <pin name="GND" x="12.7" y="-2.54" length="middle" rot="R180"/>
 <text x="-2.54" y="7.62" size="1.9304" layer="95" ratio="12">&gt;NAME</text>
 <text x="-2.54" y="-10.16" size="1.9304" layer="96" ratio="12">&gt;VALUE</text>
+</symbol>
+<symbol name="TESTPOINT">
+<pin name="TP1" x="-2.54" y="0" visible="off" length="short"/>
+<wire x1="0" y1="0" x2="0.762" y2="0.762" width="0.254" layer="94"/>
+<wire x1="0.762" y1="0.762" x2="1.524" y2="0" width="0.254" layer="94"/>
+<wire x1="1.524" y1="0" x2="0.762" y2="-0.762" width="0.254" layer="94"/>
+<wire x1="0.762" y1="-0.762" x2="0" y2="0" width="0.254" layer="94"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -628,6 +638,21 @@
 <connect gate="G$1" pin="L" pad="5"/>
 <connect gate="G$1" pin="VIN" pad="1"/>
 <connect gate="G$1" pin="VO" pad="4"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="TP_3X2">
+<gates>
+<gate name="G$1" symbol="TESTPOINT" x="5.08" y="0"/>
+</gates>
+<devices>
+<device name="" package="TP">
+<connects>
+<connect gate="G$1" pin="TP1" pad="P$1"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -10102,6 +10127,22 @@ Based on the following sources:
 <wire x1="0.635" y1="-0.635" x2="0.635" y2="0.635" width="0.25" layer="21"/>
 <wire x1="0.635" y1="0.635" x2="-0.635" y2="0" width="0.25" layer="21"/>
 </package>
+<package name="SOD323_ST">
+<description>&lt;b&gt;SOD-323&lt;/b&gt;&lt;p&gt;
+Source: www.st.com, BAT60J.pdf</description>
+<wire x1="-0.85" y1="0.55" x2="0.85" y2="0.55" width="0.1016" layer="21"/>
+<wire x1="0.85" y1="0.55" x2="0.85" y2="-0.55" width="0.1016" layer="51"/>
+<wire x1="0.85" y1="-0.55" x2="-0.85" y2="-0.55" width="0.1016" layer="21"/>
+<wire x1="-0.85" y1="-0.55" x2="-0.85" y2="0.55" width="0.1016" layer="51"/>
+<smd name="C" x="-1.25" y="0" dx="0.8" dy="0.6" layer="1"/>
+<smd name="A" x="1.25" y="0" dx="0.8" dy="0.6" layer="1"/>
+<text x="-1.65" y="0.75" size="1.27" layer="25">&gt;NAME</text>
+<text x="-1.65" y="-2" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-0.65" y1="-0.55" x2="-0.05" y2="0.55" layer="21"/>
+<rectangle x1="-1.35" y1="-0.15" x2="-0.8" y2="0.15" layer="51"/>
+<rectangle x1="0.8" y1="-0.15" x2="1.35" y2="0.15" layer="51"/>
+<rectangle x1="-0.85" y1="-0.55" x2="-0.05" y2="0.55" layer="51"/>
+</package>
 </packages>
 <symbols>
 <symbol name="D">
@@ -10117,6 +10158,21 @@ Based on the following sources:
 <text x="-2.54" y="0" size="0.4064" layer="99" align="center">SpiceOrder 1</text>
 <text x="2.54" y="0" size="0.4064" layer="99" align="center">SpiceOrder 2</text>
 </symbol>
+<symbol name="SCHOTTKY">
+<wire x1="-1.27" y1="-1.27" x2="1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="1.27" y1="0" x2="-1.27" y2="1.27" width="0.254" layer="94"/>
+<wire x1="1.905" y1="1.27" x2="1.27" y2="1.27" width="0.254" layer="94"/>
+<wire x1="1.27" y1="1.27" x2="1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="1.27" x2="-1.27" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="1.27" y1="0" x2="1.27" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="1.905" y1="1.27" x2="1.905" y2="1.016" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-1.27" x2="0.635" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="0.635" y1="-1.016" x2="0.635" y2="-1.27" width="0.254" layer="94"/>
+<text x="-2.286" y="1.905" size="1.778" layer="95">&gt;NAME</text>
+<text x="-2.286" y="-3.429" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="A" x="-2.54" y="0" visible="off" length="short" direction="pas"/>
+<pin name="C" x="2.54" y="0" visible="off" length="short" direction="pas" rot="R180"/>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="MBR0520LT" prefix="D">
@@ -10131,6 +10187,125 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 <connect gate="G$1" pin="A" pad="A"/>
 <connect gate="G$1" pin="C" pad="C"/>
 </connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="BAT60J" prefix="D">
+<description>&lt;b&gt;Schottky barrier diode&lt;/b&gt;&lt;p&gt;
+Source: www.st.com, BAT60J.pdf</description>
+<gates>
+<gate name="G$1" symbol="SCHOTTKY" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SOD323_ST">
+<connects>
+<connect gate="G$1" pin="A" pad="A"/>
+<connect gate="G$1" pin="C" pad="C"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="transistor-pnp">
+<description>&lt;b&gt;PNP Transistors&lt;/b&gt;&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="SOT23-BEC">
+<description>&lt;b&gt;TO-236&lt;/b&gt; ITT Intermetall</description>
+<wire x1="1.4224" y1="0.6604" x2="1.4224" y2="-0.6604" width="0.127" layer="51"/>
+<wire x1="1.4224" y1="-0.6604" x2="-1.4224" y2="-0.6604" width="0.127" layer="51"/>
+<wire x1="-1.4224" y1="-0.6604" x2="-1.4224" y2="0.6604" width="0.127" layer="51"/>
+<wire x1="-1.4224" y1="0.6604" x2="1.4224" y2="0.6604" width="0.127" layer="51"/>
+<smd name="C" x="0" y="1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="E" x="0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="B" x="-0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+<text x="-1.905" y="1.905" size="1.27" layer="25">&gt;NAME</text>
+<text x="-1.905" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-0.2286" y1="0.7112" x2="0.2286" y2="1.2954" layer="51"/>
+<rectangle x1="0.7112" y1="-1.2954" x2="1.1684" y2="-0.7112" layer="51"/>
+<rectangle x1="-1.1684" y1="-1.2954" x2="-0.7112" y2="-0.7112" layer="51"/>
+</package>
+</packages>
+<symbols>
+<symbol name="PNP">
+<wire x1="2.086" y1="1.678" x2="1.578" y2="2.594" width="0.1524" layer="94"/>
+<wire x1="1.578" y1="2.594" x2="0.516" y2="1.478" width="0.1524" layer="94"/>
+<wire x1="0.516" y1="1.478" x2="2.086" y2="1.678" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="2.54" x2="1.808" y2="2.124" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="-2.54" x2="0.508" y2="-1.524" width="0.1524" layer="94"/>
+<wire x1="1.905" y1="1.778" x2="1.524" y2="2.413" width="0.254" layer="94"/>
+<wire x1="1.524" y1="2.413" x2="0.762" y2="1.651" width="0.254" layer="94"/>
+<wire x1="0.762" y1="1.651" x2="1.778" y2="1.778" width="0.254" layer="94"/>
+<wire x1="1.778" y1="1.778" x2="1.524" y2="2.159" width="0.254" layer="94"/>
+<wire x1="1.524" y1="2.159" x2="1.143" y2="1.905" width="0.254" layer="94"/>
+<wire x1="1.143" y1="1.905" x2="1.524" y2="1.905" width="0.254" layer="94"/>
+<text x="-10.16" y="7.62" size="1.778" layer="95">&gt;NAME</text>
+<text x="-10.16" y="5.08" size="1.778" layer="96">&gt;VALUE</text>
+<rectangle x1="-0.254" y1="-2.54" x2="0.508" y2="2.54" layer="94"/>
+<pin name="B" x="-2.54" y="0" visible="off" length="short" direction="pas"/>
+<pin name="E" x="2.54" y="5.08" visible="off" length="short" direction="pas" rot="R270"/>
+<pin name="C" x="2.54" y="-5.08" visible="off" length="short" direction="pas" rot="R90"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="BC857*" prefix="Q">
+<description>&lt;b&gt;PNP Transistror&lt;/b&gt;</description>
+<gates>
+<gate name="G$1" symbol="PNP" x="0" y="0"/>
+</gates>
+<devices>
+<device name="SMD" package="SOT23-BEC">
+<connects>
+<connect gate="G$1" pin="B" pad="B"/>
+<connect gate="G$1" pin="C" pad="C"/>
+<connect gate="G$1" pin="E" pad="E"/>
+</connects>
+<technologies>
+<technology name="A"/>
+<technology name="ALT1"/>
+<technology name="B"/>
+<technology name="BALT1"/>
+<technology name="C"/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="supply2">
+<description>&lt;b&gt;Supply Symbols&lt;/b&gt;&lt;p&gt;
+GND, VCC, 0V, +5V, -5V, etc.&lt;p&gt;
+Please keep in mind, that these devices are necessary for the
+automatic wiring of the supply signals.&lt;p&gt;
+The pin name defined in the symbol is identical to the net which is to be wired automatically.&lt;p&gt;
+In this library the device names are the same as the pin names of the symbols, therefore the correct signal names appear next to the supply symbols in the schematic.&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+</packages>
+<symbols>
+<symbol name="DGND">
+<wire x1="-1.27" y1="0" x2="1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="1.27" y1="0" x2="0" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="0" y1="-1.27" x2="-1.27" y2="0" width="0.254" layer="94"/>
+<text x="-2.667" y="-3.175" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="DGND" x="0" y="2.54" visible="off" length="short" direction="sup" rot="R270"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="DGND" prefix="SUPPLY">
+<description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
+<gates>
+<gate name="G$1" symbol="DGND" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
 <technologies>
 <technology name=""/>
 </technologies>
@@ -10252,6 +10427,22 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 <part name="VCC1" library="supply1" deviceset="VCCINT" device=""/>
 <part name="VCC2" library="supply1" deviceset="VCCINT" device=""/>
 <part name="SUPPLY7" library="SparkFun-Aesthetics" deviceset="V_BATT" device="" value="V_IN"/>
+<part name="Q1" library="transistor-pnp" deviceset="BC857*" device="SMD" technology="B"/>
+<part name="SUPPLY8" library="supply2" deviceset="DGND" device=""/>
+<part name="R15" library="rcl" deviceset="R-EU_" device="R0603" value="1K"/>
+<part name="D2" library="diode" deviceset="BAT60J" device=""/>
+<part name="U$12" library="fmc" deviceset="TP_3X2" device=""/>
+<part name="U$13" library="fmc" deviceset="TP_3X2" device=""/>
+<part name="MOT" library="fmc" deviceset="TP_3X2" device=""/>
+<part name="VIN" library="fmc" deviceset="TP_3X2" device=""/>
+<part name="Q2" library="transistor-pnp" deviceset="BC857*" device="SMD" technology="B"/>
+<part name="SUPPLY9" library="supply2" deviceset="DGND" device=""/>
+<part name="R16" library="rcl" deviceset="R-EU_" device="R0603" value="1K"/>
+<part name="D3" library="diode" deviceset="BAT60J" device=""/>
+<part name="U$14" library="fmc" deviceset="TP_3X2" device=""/>
+<part name="U$15" library="fmc" deviceset="TP_3X2" device=""/>
+<part name="MOT1" library="fmc" deviceset="TP_3X2" device=""/>
+<part name="VIN1" library="fmc" deviceset="TP_3X2" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -10295,6 +10486,10 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 <wire x1="154.94" y1="43.18" x2="154.94" y2="182.88" width="0.6096" layer="97"/>
 <wire x1="154.94" y1="182.88" x2="218.44" y2="182.88" width="0.6096" layer="97"/>
 <wire x1="218.44" y1="182.88" x2="218.44" y2="43.18" width="0.6096" layer="97"/>
+<text x="360.68" y="228.6" size="2.54" layer="97" ratio="12">Vmot</text>
+<text x="340.36" y="241.3" size="2.54" layer="97" ratio="12">Vin</text>
+<text x="299.72" y="228.6" size="2.54" layer="97" ratio="12">Vmot</text>
+<text x="279.4" y="241.3" size="2.54" layer="97" ratio="12">Vin</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="111.76" y="33.02"/>
@@ -10418,6 +10613,22 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 <instance part="VCC1" gate="G$1" x="33.02" y="220.98"/>
 <instance part="VCC2" gate="G$1" x="96.52" y="30.48"/>
 <instance part="SUPPLY7" gate="G$1" x="121.92" y="99.06"/>
+<instance part="Q1" gate="G$1" x="347.98" y="226.06"/>
+<instance part="SUPPLY8" gate="G$1" x="350.52" y="208.28"/>
+<instance part="R15" gate="G$1" x="337.82" y="220.98" rot="R90"/>
+<instance part="D2" gate="G$1" x="350.52" y="215.9" rot="R90"/>
+<instance part="U$12" gate="G$1" x="330.2" y="213.36" rot="R90"/>
+<instance part="U$13" gate="G$1" x="358.14" y="213.36" rot="R90"/>
+<instance part="MOT" gate="G$1" x="358.14" y="231.14" rot="R90"/>
+<instance part="VIN" gate="G$1" x="350.52" y="238.76" rot="R90"/>
+<instance part="Q2" gate="G$1" x="287.02" y="226.06"/>
+<instance part="SUPPLY9" gate="G$1" x="289.56" y="208.28"/>
+<instance part="R16" gate="G$1" x="276.86" y="220.98" rot="R90"/>
+<instance part="D3" gate="G$1" x="289.56" y="215.9" rot="R90"/>
+<instance part="U$14" gate="G$1" x="269.24" y="213.36" rot="R90"/>
+<instance part="U$15" gate="G$1" x="297.18" y="213.36" rot="R90"/>
+<instance part="MOT1" gate="G$1" x="297.18" y="231.14" rot="R90"/>
+<instance part="VIN1" gate="G$1" x="289.56" y="238.76" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -11322,6 +11533,86 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 <wire x1="96.52" y1="27.94" x2="96.52" y2="22.86" width="0.1524" layer="91"/>
 <pinref part="VCC2" gate="G$1" pin="VCCINT"/>
 <junction x="96.52" y="27.94"/>
+</segment>
+</net>
+<net name="DGND" class="0">
+<segment>
+<pinref part="SUPPLY8" gate="G$1" pin="DGND"/>
+<wire x1="330.2" y1="210.82" x2="337.82" y2="210.82" width="0.1524" layer="91"/>
+<wire x1="337.82" y1="210.82" x2="350.52" y2="210.82" width="0.1524" layer="91"/>
+<wire x1="350.52" y1="210.82" x2="358.14" y2="210.82" width="0.1524" layer="91"/>
+<junction x="350.52" y="210.82"/>
+<pinref part="R15" gate="G$1" pin="1"/>
+<wire x1="337.82" y1="215.9" x2="337.82" y2="210.82" width="0.1524" layer="91"/>
+<junction x="337.82" y="210.82"/>
+<pinref part="D2" gate="G$1" pin="A"/>
+<wire x1="350.52" y1="213.36" x2="350.52" y2="210.82" width="0.1524" layer="91"/>
+<pinref part="U$12" gate="G$1" pin="TP1"/>
+<pinref part="U$13" gate="G$1" pin="TP1"/>
+</segment>
+<segment>
+<pinref part="SUPPLY9" gate="G$1" pin="DGND"/>
+<wire x1="269.24" y1="210.82" x2="276.86" y2="210.82" width="0.1524" layer="91"/>
+<wire x1="276.86" y1="210.82" x2="289.56" y2="210.82" width="0.1524" layer="91"/>
+<wire x1="289.56" y1="210.82" x2="297.18" y2="210.82" width="0.1524" layer="91"/>
+<junction x="289.56" y="210.82"/>
+<pinref part="R16" gate="G$1" pin="1"/>
+<wire x1="276.86" y1="215.9" x2="276.86" y2="210.82" width="0.1524" layer="91"/>
+<junction x="276.86" y="210.82"/>
+<pinref part="D3" gate="G$1" pin="A"/>
+<wire x1="289.56" y1="213.36" x2="289.56" y2="210.82" width="0.1524" layer="91"/>
+<pinref part="U$14" gate="G$1" pin="TP1"/>
+<pinref part="U$15" gate="G$1" pin="TP1"/>
+</segment>
+</net>
+<net name="N$1" class="0">
+<segment>
+<pinref part="Q1" gate="G$1" pin="B"/>
+<pinref part="R15" gate="G$1" pin="2"/>
+<wire x1="345.44" y1="226.06" x2="337.82" y2="226.06" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$8" class="0">
+<segment>
+<wire x1="358.14" y1="228.6" x2="358.14" y2="220.98" width="0.1524" layer="91"/>
+<pinref part="Q1" gate="G$1" pin="C"/>
+<wire x1="358.14" y1="220.98" x2="350.52" y2="220.98" width="0.1524" layer="91"/>
+<pinref part="D2" gate="G$1" pin="C"/>
+<wire x1="350.52" y1="218.44" x2="350.52" y2="220.98" width="0.1524" layer="91"/>
+<junction x="350.52" y="220.98"/>
+<pinref part="MOT" gate="G$1" pin="TP1"/>
+</segment>
+</net>
+<net name="N$11" class="0">
+<segment>
+<pinref part="Q1" gate="G$1" pin="E"/>
+<wire x1="350.52" y1="236.22" x2="350.52" y2="231.14" width="0.1524" layer="91"/>
+<pinref part="VIN" gate="G$1" pin="TP1"/>
+</segment>
+</net>
+<net name="N$24" class="0">
+<segment>
+<pinref part="Q2" gate="G$1" pin="B"/>
+<pinref part="R16" gate="G$1" pin="2"/>
+<wire x1="284.48" y1="226.06" x2="276.86" y2="226.06" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$25" class="0">
+<segment>
+<wire x1="297.18" y1="228.6" x2="297.18" y2="220.98" width="0.1524" layer="91"/>
+<pinref part="Q2" gate="G$1" pin="C"/>
+<wire x1="297.18" y1="220.98" x2="289.56" y2="220.98" width="0.1524" layer="91"/>
+<pinref part="D3" gate="G$1" pin="C"/>
+<wire x1="289.56" y1="218.44" x2="289.56" y2="220.98" width="0.1524" layer="91"/>
+<junction x="289.56" y="220.98"/>
+<pinref part="MOT1" gate="G$1" pin="TP1"/>
+</segment>
+</net>
+<net name="N$26" class="0">
+<segment>
+<pinref part="Q2" gate="G$1" pin="E"/>
+<wire x1="289.56" y1="236.22" x2="289.56" y2="231.14" width="0.1524" layer="91"/>
+<pinref part="VIN1" gate="G$1" pin="TP1"/>
 </segment>
 </net>
 </nets>
