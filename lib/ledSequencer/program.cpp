@@ -17,6 +17,7 @@ ledSequence _myChannels[LEDS_ON_BOARD];
 static uint8_t _channelsAvail;  // number of available slots
 static uint8_t _used;           // number of used slots
 static uint16_t _period;        // Wait delay after playing the entire sequence
+static uint16_t _currentPeriod; // Current period counter
 Storage store;                  // Added support for persisten storage
 
 
@@ -43,6 +44,8 @@ void program::init(int period)
    {
       _period = store.getPeriod();
    }
+   _currentPeriod = _period; // Load the current period counter
+
 
    // Setup initial program
    loadProgram(store.getProgram());
@@ -50,11 +53,15 @@ void program::init(int period)
 
 void program::playProgram( )
 {
-   for ( int i = 0; i < _used ; i++ )
+   if ( _currentPeriod == 0)
    {
-      _myChannels[i].playNext();
+      for ( int i = 0; i < _used ; i++ )
+      {
+         _myChannels[i].playNext();
+      }
+      _currentPeriod = _period; // reload the period counter
    }
-   delay(_period);
+   _currentPeriod--;
    //Serial.println();
 }
 
