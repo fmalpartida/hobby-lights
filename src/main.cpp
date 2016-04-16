@@ -18,10 +18,6 @@ extern void clickedCallback();
 extern void longPressCallback();
 extern void doublePressCallback();
 
-#define LED 13
-
-button myButton1(A0, clickedCallback, doublePressCallback, longPressCallback);
-
 // Define my ISR to wake the sequencer
 void myTimerInt ()
 {
@@ -62,15 +58,7 @@ void loop ()
    {
       static uint8_t buttonPeriod = CHECK_BUTTON_PERIOD;
 
-      // Check for button press
-      if ( buttonPeriod != 0 )
-      {
-         myButton1.getEvent();
-         buttonPeriod = CHECK_BUTTON_PERIOD;
-      }
-      buttonPeriod--;
-
-      // Play the program
+      // Sequence the program currently loaded
       myProgram.playProgram();
 
       ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
@@ -78,23 +66,4 @@ void loop ()
          wakeUp = false;
       }
    }
-}
-
-void clickedCallback()
-{
-   digitalWrite (LED, 1);
-}
-void longPressCallback()
-{
-   digitalWrite (LED, 0);
-}
-void doublePressCallback()
-{
-   digitalWrite (LED, 1);
-   delay(500);
-   digitalWrite (LED, 0);
-   delay(500);
-   digitalWrite (LED, 1);
-   delay(500);
-   digitalWrite (LED, 0);
 }

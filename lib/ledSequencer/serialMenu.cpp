@@ -14,7 +14,7 @@ void command::execute(program *myProgram)
       if ((value>= 0) && (value < myProgram->getNumPrograms()) &&
          (value != myProgram->getCurrentProgram()))
          {
-            myProgram->loadProgram(value);
+            myProgram->loadProgram(value, true); // load program and store
          }
    }
 
@@ -22,7 +22,7 @@ void command::execute(program *myProgram)
    {
       if ((value>= 0) && (value != myProgram->getPeriod()))
          {
-            myProgram->setPeriod(value);
+            myProgram->setPeriod(value, true); // load period and store
          }
    }
 
@@ -54,12 +54,13 @@ command *serialMenu::getCommand ( )
    while (Serial.available() > 0) {
 
       char inChar = Serial.read();
+      Serial.write(inChar);
 
       if (inChar == 'p')
       {
          _command.myCommand = SET_PROGRAM;
       }
-      if (inChar == 'f')
+      if (inChar == 's')
       {
          _command.myCommand = SET_PERIOD;
       }
@@ -98,5 +99,5 @@ void serialMenu::printOptions(program *currentProg)
    Serial.println(currentProg->getCurrentProgram());
    Serial.print("\tCurrent Period: ");
    Serial.println(currentProg->getPeriod());
-   Serial.print("Options: p <program id>, f <period>, l (list programs)\n");
+   Serial.print("Options: p <program id>, s <speed>, l (list programs)\n");
 }

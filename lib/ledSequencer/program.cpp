@@ -48,7 +48,7 @@ void program::init(int period)
 
 
    // Setup initial program
-   loadProgram(store.getProgram());
+   loadProgram(store.getProgram(), false);
 }
 
 void program::playProgram( )
@@ -65,7 +65,7 @@ void program::playProgram( )
    //Serial.println();
 }
 
-void program::loadProgram(uint8_t progID)
+void program::loadProgram(uint8_t progID, bool save)
 {
    for ( uint8_t i=0; i < LEDS_ON_BOARD; i++)
    {
@@ -81,14 +81,24 @@ void program::loadProgram(uint8_t progID)
       //Serial.println( "------");
    }
    _used = LEDS_ON_BOARD;
-   store.setProgram(progID);
+
+   if (save)
+   {
+      store.setProgram(progID);
+   }
 }
 
 
-void program::setPeriod(uint16_t period)
+void program::setPeriod(uint16_t period, bool save)
 {
-   _period = period;
-   store.setPeriod(period);
+   if ( period > 0)
+   {
+      _period = period;
+   }
+   if (save)
+   {
+      store.setPeriod(period);
+   }
 }
 
 uint16_t program::getPeriod()
