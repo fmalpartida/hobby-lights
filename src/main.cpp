@@ -3,22 +3,38 @@
 #include <serialMenu.hpp>
 #include <TimerOne.h>
 #include <FastIO.h>
+#include <button.hpp>
 
+
+#define CHECK_BUTTON_PERIOD 10     //Check very 10ms
+const int timerPeriod_us    = 500; // will give a 1ms resolution sequence
+
+bool wakeUp = false;
 
 program myProgram;
 serialMenu myInput;
 
-const int timerPeriod_us = 500; // will give a 1ms resolution sequence
-bool wakeUp = false;
+extern void clickedCallback();
+extern void longPressCallback();
+extern void doublePressCallback();
+
+#define LED 13
+
+button myButton1(A0, clickedCallback, doublePressCallback, longPressCallback);
 
 // Define my ISR to wake the sequencer
 void myTimerInt ()
 {
-   wakeUp = true;
+   ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+   {
+      wakeUp = true;
+   }
 }
 
 void setup ()
 {
+   pinMode (LED, OUTPUT);
+
    Serial.begin(115200);
    myProgram.init(0);
    myInput.printOptions(&myProgram);
@@ -33,7 +49,6 @@ void loop ()
 {
    command *newCommand;
 
-
    // Check for serial inputs
    newCommand = myInput.getCommand();
 
@@ -45,7 +60,15 @@ void loop ()
 
    if (wakeUp)
    {
+      static uint8_t buttonPeriod = CHECK_BUTTON_PERIOD;
+
       // Check for button press
+      if ( buttonPeriod != 0 )
+      {
+         myButton1.getEvent();
+         buttonPeriod = CHECK_BUTTON_PERIOD;
+      }
+      buttonPeriod--;
 
       // Play the program
       myProgram.playProgram();
@@ -55,4 +78,23 @@ void loop ()
          wakeUp = false;
       }
    }
+}
+
+void clickedCallback()
+{
+   digitalWrite (LED, 1);
+}
+void longPressCallback()
+{
+   digitalWrite (LED, 0);
+}
+void doublePressCallback()
+{
+   digitalWrite (LED, 1);
+   delay(500);
+   digitalWrite (LED, 0);
+   delay(500);
+   digitalWrite (LED, 1);
+   delay(500);
+   digitalWrite (LED, 0);
 }

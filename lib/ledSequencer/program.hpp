@@ -1,7 +1,4 @@
 #include <inttypes.h>
-#include <ledSequence.hpp>
-#include <leds.hpp>
-
 
 #ifndef __PROGRAM__
 #define __PROGRAM__
