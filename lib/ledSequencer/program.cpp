@@ -69,19 +69,16 @@ void program::playProgram( )
 void program::loadProgram(uint8_t progID, bool save)
 {
    progInMem = progID;
-
+#if 0
+   Serial.print("Program: ");
+   Serial.println(progInMem);
+#endif
    for ( uint8_t i=0; i < LEDS_ON_BOARD; i++)
    {
       _myChannels[i].setLed((int)demoSequence[progID][i].led);
       _myChannels[i].setSequence(sequenceList[demoSequence[progID][i].seqIndex].sequence,
          sequenceList[demoSequence[progID][i].seqIndex].seqSize);
-      //Serial.print("Program: ");
-      //Serial.println(progID);
-      //Serial.print("LED: ");
-      //Serial.println(demoSequence[progID][i].led);
-      //Serial.print("Sequence: ");
-      //Serial.println( demoSequence[progID][i].seqIndex);
-      //Serial.println( "------");
+
    }
    _used = LEDS_ON_BOARD;
 
@@ -107,6 +104,11 @@ void program::setPeriod(uint16_t period, bool save)
 uint16_t program::getPeriod()
 {
    return (_period);
+}
+
+uint16_t program::getStorePeriod()
+{
+   return (store.getPeriod());
 }
 
 uint16_t program::getNumPrograms()

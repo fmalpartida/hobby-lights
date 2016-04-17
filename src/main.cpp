@@ -4,16 +4,13 @@
 #include <FastIO.h>
 #include <program.hpp>
 #include <controller.hpp>
+#include <commonConstants.hpp>
 
-
-const int timerPeriod_us    = 500; // will give a 1ms resolution sequence
-const int controllerPeriod  = 10 * (1000/timerPeriod_us);  // 10 ms
 
 bool wakeUp = false;
 
 program myProgram;
 serialMenu myInput;
-
 controller myController(controllerPeriod, 8, 9, 10, &myProgram);
 
 // Define my ISR to wake the sequencer

@@ -13,6 +13,7 @@ public:
    void init(int);
    void setPeriod(uint16_t, bool store);
    uint16_t getPeriod();
+   uint16_t getStorePeriod();
    uint16_t getNumPrograms();
    uint16_t getCurrentProgram();
    uint16_t getStoreProgram();

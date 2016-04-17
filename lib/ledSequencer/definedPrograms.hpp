@@ -271,20 +271,24 @@ const char userDesc[] PROGMEM = "USER DEFINED";
 
 // Predefined program names
 const char * const names[] PROGMEM =
-{ fixedDesc, airplane1Desc, airplane2Desc, helicopterDesc, emergencyCar1Desc,
+{ userDesc, airplane1Desc, airplane2Desc, helicopterDesc, emergencyCar1Desc,
    emergencyCar2Desc, shots1Desc, shots2Desc, diorama1Desc, diorama2Desc, diorama3Desc,
-   diorama4Desc, blinkDesc, chaser1Desc, chaser2Desc, allFlickerDesc, allFastBlinkDesc,
+   diorama4Desc, chaser1Desc, chaser2Desc, allFlickerDesc, allFastBlinkDesc,
+   fixedDesc,
 
-   userDesc // Last user defined
+   // Last all blink
+   blinkDesc
+
 };
 
 // Predefined programs
 t_sequenceDesc *demoSequence[] =
-{ allFixed, airplane1, airplane2, helicopter, emergencyCar1, emergencyCar2,
-   gunShot1, gunShot2, diorama1, diorama2, diorama3, diorama4, blink, chaser1,
-   chaser2, allFlicker, allFastBlick,
+{ user, airplane1, airplane2, helicopter, emergencyCar1, emergencyCar2,
+   gunShot1, gunShot2, diorama1, diorama2, diorama3, diorama4, chaser1,
+   chaser2, allFlicker, allFastBlick, allFixed,
 
-   user // Last user defined
+   // Last all blink
+   blink
 };
 
 

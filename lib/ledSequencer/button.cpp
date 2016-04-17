@@ -1,10 +1,10 @@
 #include <button.hpp>
 #include <FastIO.h>
+#include <commonConstants.hpp>
 
 // Call periods: 500 us
-#define LONG_CLICK_TIMEOUT   100  // 1s
-#define CLICK_TIMEOUT        20   // 200ms
-
+#define LONG_CLICK_TIMEOUT   (1000 / CONTROLLER_PERIOD)  // 1s
+#define CLICK_TIMEOUT        (200 / CONTROLLER_PERIOD)   // 200ms
 
 
 button::button(int myPin)
