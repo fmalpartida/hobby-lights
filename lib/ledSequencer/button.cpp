@@ -2,60 +2,69 @@
 #include <FastIO.h>
 
 // Call periods: 500 us
-#define LONG_CLICK_TIMEOUT   1000  // 500ms
-#define CLICK_TIMEOUT        300   // 159ms
+#define LONG_CLICK_TIMEOUT   100  // 1s
+#define CLICK_TIMEOUT        20   // 200ms
 
-// State machine states
-typedef enum
+
+
+button::button(int myPin)
 {
-   IDLE       = 0,
-   PUSHED_1   = 1,
-   RELEASED_1 = 2,
-   PUSHED_2   = 3,
-   LONG_PRESS = 4,
+   pinMode (myPin, INPUT_PULLUP);
 
-   BUTTON_STATE_LAST
-} t_buttonStates;
-
-// Button state machine state
-t_buttonStates _myState;
-
-button::button(int pin)
-{
-   pinMode (pin, INPUT_PULLUP);
-
-   _register = fio_pinToOutputRegister ( pin );
-   _IObit = fio_pinToBit(pin);
-   _pin = pin;
+   IOregister = fio_pinToOutputRegister ( pin );
+   IObit = fio_pinToBit(pin);
+   pin = myPin;
 
    _myState = IDLE;
 
 }
 
-button::button (int pin, buttonCallBack click, buttonCallBack doubleClick,
+button::button (int myPin, buttonCallBack click, buttonCallBack doubleClick,
    buttonCallBack longClick)
 {
-   pinMode (pin, INPUT_PULLUP);
-   _pin = pin;
-   _register = fio_pinToOutputRegister ( pin );
-   _IObit = fio_pinToBit(pin);
+   pinMode (myPin, INPUT_PULLUP);
+   pin = myPin;
+   IOregister = fio_pinToOutputRegister ( pin );
+   IObit = fio_pinToBit(pin);
 
    // Setup event callbacks
-   clickedEv = click;
-   doubleClickedEv = doubleClick;
-   longClickEv = longClick;
+   clickAction = click;
+   doubleClickAction = doubleClick;
+   longClickAction = longClick;
 
    // Setup the button initial state
    _myState = IDLE;
 }
 
+void button::setClickAction (buttonCallBack action)
+{
+   clickAction = action;
+}
+
+void button::setDoubleClickAction (buttonCallBack action)
+{
+   doubleClickAction = action;
+}
+
+void button::setLongClickAction (buttonCallBack action)
+{
+   longClickAction = action;
+}
+
+void button::setActions (buttonCallBack click, buttonCallBack doubleClick,
+   buttonCallBack longClick)
+{
+   clickAction = click;
+   doubleClickAction = doubleClick;
+   longClickAction = longClick;
+}
 
 button::t_ButtonState button::getState()
 {
    t_ButtonState state;
 
    //state = (t_ButtonState)fio_digitalRead(_register, _IObit);
-   state = (t_ButtonState)digitalRead(_pin);
+   state = (t_ButtonState)digitalRead(pin);
 
    return (state);
 }
@@ -76,7 +85,7 @@ button::t_buttonEvent button::getEvent()
          if (buttonState == PRESSED)
          {
             _myState = PUSHED_1;
-            _pressTimeout = LONG_CLICK_TIMEOUT; // Arm the timer for the long press
+            pressTimeout = LONG_CLICK_TIMEOUT; // Arm the timer for the long press
          }
          break;
 
@@ -84,21 +93,21 @@ button::t_buttonEvent button::getEvent()
       // it decreases by one the long press timeout on long press transition
       // to long press state and calls pressedEv callback.
       case PUSHED_1:
-         _pressTimeout--;
+         pressTimeout--;
 
-         if (_pressTimeout == 0)
+         if (pressTimeout == 0)
          {
             _myState = LONG_PRESS;
-            if (clickedEv != NULL)
+            if (longClickAction != NULL)
             {
-               longClickEv();
+               longClickAction();
             }
             retVal = LONG_CLICK;  // PRESSED (LONG PRESS)
          }
          else if ( buttonState == RELEASED )
          {
             _myState = RELEASED_1;
-            _clickTimeout = CLICK_TIMEOUT; // Arm the timer for the doble click
+            clickTimeout = CLICK_TIMEOUT; // Arm the timer for the doble click
          }
          break;
 
@@ -107,13 +116,13 @@ button::t_buttonEvent button::getEvent()
       // and call the chickedEv callback.
       // If pressed again, moves to double press state.
       case RELEASED_1:
-         _clickTimeout--;
+         clickTimeout--;
 
-         if (_clickTimeout == 0)
+         if (clickTimeout == 0)
          {
-            if (clickedEv != NULL)
+            if (clickAction != NULL)
             {
-               clickedEv();
+               clickAction();
             }
             retVal = CLICK; // SINGLE click
             _myState = IDLE;
@@ -133,9 +142,9 @@ button::t_buttonEvent button::getEvent()
          {
             retVal = DOUBLE_CLICK;  // DOUBLE click
 
-            if ( doubleClickedEv != NULL )
+            if ( doubleClickAction != NULL )
             {
-               doubleClickedEv();
+               doubleClickAction();
             }
             _myState = IDLE;
          }
@@ -154,6 +163,8 @@ button::t_buttonEvent button::getEvent()
 
       if ( currentState != _myState )
       {
+         Serial.print (pin);
+         Serial.print (": ");
          Serial.print (buttonState);
          Serial.print (", ");
          Serial.println(_myState);

@@ -6,19 +6,18 @@
 
 class program
 {
-
+uint8_t progInMem;
 
 public:
    program();
    void init(int);
    void setPeriod(uint16_t, bool store);
    uint16_t getPeriod();
-   void loadProgram(uint8_t, bool store);
-   void playProgram();
    uint16_t getNumPrograms();
    uint16_t getCurrentProgram();
+   uint16_t getStoreProgram();
    char *getProgramName(uint8_t);
-
-
+   void loadProgram(uint8_t, bool store);
+   void playProgram();
 };
 #endif // __PROGRAM__

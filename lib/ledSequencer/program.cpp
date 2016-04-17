@@ -46,9 +46,10 @@ void program::init(int period)
    }
    _currentPeriod = _period; // Load the current period counter
 
+   progInMem = store.getProgram();
 
    // Setup initial program
-   loadProgram(store.getProgram(), false);
+   loadProgram(progInMem, false);
 }
 
 void program::playProgram( )
@@ -67,6 +68,8 @@ void program::playProgram( )
 
 void program::loadProgram(uint8_t progID, bool save)
 {
+   progInMem = progID;
+
    for ( uint8_t i=0; i < LEDS_ON_BOARD; i++)
    {
       _myChannels[i].setLed((int)demoSequence[progID][i].led);
@@ -112,6 +115,11 @@ uint16_t program::getNumPrograms()
 }
 
 uint16_t program::getCurrentProgram()
+{
+   return (progInMem);
+}
+
+uint16_t program::getStoreProgram()
 {
    return (store.getProgram());
 }

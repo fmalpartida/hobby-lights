@@ -1,22 +1,20 @@
 #include <Arduino.h>
-#include <program.hpp>
 #include <serialMenu.hpp>
 #include <TimerOne.h>
 #include <FastIO.h>
-#include <button.hpp>
+#include <program.hpp>
+#include <controller.hpp>
 
 
-#define CHECK_BUTTON_PERIOD 10     //Check very 10ms
 const int timerPeriod_us    = 500; // will give a 1ms resolution sequence
+const int controllerPeriod  = 10 * (1000/timerPeriod_us);  // 10 ms
 
 bool wakeUp = false;
 
 program myProgram;
 serialMenu myInput;
 
-extern void clickedCallback();
-extern void longPressCallback();
-extern void doublePressCallback();
+controller myController(controllerPeriod, 8, 9, 10, &myProgram);
 
 // Define my ISR to wake the sequencer
 void myTimerInt ()
@@ -29,8 +27,6 @@ void myTimerInt ()
 
 void setup ()
 {
-   pinMode (LED, OUTPUT);
-
    Serial.begin(115200);
    myProgram.init(0);
    myInput.printOptions(&myProgram);
@@ -38,7 +34,6 @@ void setup ()
    // Initialize the periodic timer
    Timer1.initialize(timerPeriod_us);
    Timer1.attachInterrupt(myTimerInt, timerPeriod_us);
-
 }
 
 void loop ()
@@ -56,9 +51,8 @@ void loop ()
 
    if (wakeUp)
    {
-      static uint8_t buttonPeriod = CHECK_BUTTON_PERIOD;
-
       // Sequence the program currently loaded
+      myController.monitorKeyboard();
       myProgram.playProgram();
 
       ATOMIC_BLOCK(ATOMIC_RESTORESTATE)

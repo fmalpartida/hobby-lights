@@ -1,25 +1,56 @@
 #include <inttypes.h>
-#include <leds.hpp>
 #include <FastIO.h>
 
 
 #ifndef __BUTTON__
 #define __BUTTON__
 
+typedef void (*buttonCallBack)();
 
 class button
 {
+   // type definition
+   // ===============
+
+
+   typedef enum
+   {
+      RELEASED = 1,
+      PRESSED = 0,
+
+      BUTTON_LAST
+   } t_ButtonState;
+
+   // State machine states
+   typedef enum
+   {
+      IDLE       = 0,
+      PUSHED_1   = 1,
+      RELEASED_1 = 2,
+      PUSHED_2   = 3,
+      LONG_PRESS = 4,
+
+      BUTTON_STATE_LAST
+   } t_buttonStates;
+
+   // Button state machine state
+   t_buttonStates _myState;
    //
    // Class variables
-   fio_register _register;   // IO register
-   fio_bit _IObit;           // IO bit
-   int _pin;
+   fio_register IOregister;   // IO register
+   fio_bit IObit;           // IO bit
+   int pin;
 
-   typedef void (*buttonCallBack)();
+   buttonCallBack clickAction = NULL;
+   buttonCallBack doubleClickAction = NULL;
+   buttonCallBack longClickAction = NULL;
 
-   buttonCallBack clickedEv = NULL;
-   buttonCallBack doubleClickedEv = NULL;
-   buttonCallBack longClickEv = NULL;
+   // Current state of the button IDLE (initial value)
+
+   uint16_t pressTimeout;
+   uint16_t clickTimeout;
+
+public:
 
    typedef enum
    {
@@ -31,24 +62,16 @@ class button
       EVENT_LAST
    } t_buttonEvent;
 
-   // Current state of the button IDLE (initial value)
-
-   uint16_t _pressTimeout;
-   uint16_t _clickTimeout;
-
-public:
-   typedef enum
-   {
-      RELEASED = 1,
-      PRESSED = 0,
-
-      BUTTON_LAST
-   } t_ButtonState;
-
    // Constructors
    button(int);
-   button(int, buttonCallBack click = NULL, buttonCallBack doubleClick = NULL,
-      buttonCallBack longClick = NULL);
+   button(int, buttonCallBack click, buttonCallBack doubleClick,
+      buttonCallBack longClick);
+
+   void setClickAction (buttonCallBack);
+   void setDoubleClickAction (buttonCallBack);
+   void setLongClickAction (buttonCallBack);
+   void setActions (buttonCallBack click, buttonCallBack doubleClick,
+      buttonCallBack longClick);
 
    // Button current state
    t_ButtonState getState();
