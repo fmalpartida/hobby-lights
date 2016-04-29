@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.0.0">
+<eagle version="7.4.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="yes"/>
@@ -10188,9 +10188,9 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 <part name="R8" library="rcl" deviceset="R-EU_" device="R0603" value="10k"/>
 <part name="R9" library="rcl" deviceset="R-EU_" device="R0603" value="10k"/>
 <part name="R10" library="rcl" deviceset="R-EU_" device="R0603" value="10k"/>
-<part name="C5" library="rcl" deviceset="C-EU" device="C0603" value="0.1nF"/>
-<part name="C6" library="rcl" deviceset="C-EU" device="C0603" value="0.1nF"/>
-<part name="C7" library="rcl" deviceset="C-EU" device="C0603" value="0.1nF"/>
+<part name="C5" library="rcl" deviceset="C-EU" device="C0603" value="0.1uF"/>
+<part name="C6" library="rcl" deviceset="C-EU" device="C0603" value="0.1uF"/>
+<part name="C7" library="rcl" deviceset="C-EU" device="C0603" value="0.1uF"/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
@@ -10210,9 +10210,9 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 <part name="GND22" library="SparkFun" deviceset="GND" device=""/>
 <part name="FRAME1" library="frames" deviceset="DINA3_L" device=""/>
 <part name="R11" library="rcl" deviceset="R-EU_" device="R0603" value="10k"/>
-<part name="C8" library="rcl" deviceset="C-EU" device="C0603" value="0.1nF"/>
-<part name="C9" library="rcl" deviceset="C-EU" device="C0603" value="0.1nF"/>
-<part name="C10" library="rcl" deviceset="C-EU" device="C0603" value="0.1nF"/>
+<part name="C8" library="rcl" deviceset="C-EU" device="C0603" value="0.1uF"/>
+<part name="C9" library="rcl" deviceset="C-EU" device="C0603" value="0.1uF"/>
+<part name="C10" library="rcl" deviceset="C-EU" device="C0603" value="0.1uF"/>
 <part name="C12" library="rcl" deviceset="C-EU" device="C0603" value="1uF"/>
 <part name="GND24" library="SparkFun" deviceset="GND" device=""/>
 <part name="P+1" library="SparkFun" deviceset="VCC" device=""/>
@@ -10224,8 +10224,8 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 <part name="S2" library="SAVMakerI" deviceset="SPARKFUN_TAC_SWITCH" device="SMD"/>
 <part name="S3" library="SAVMakerI" deviceset="SPARKFUN_TAC_SWITCH" device="SMD"/>
 <part name="U$4" library="fmc" deviceset="AVR_ICSP" device=""/>
-<part name="C13" library="rcl" deviceset="C-EU" device="C0603" value="0.1nF"/>
-<part name="C14" library="rcl" deviceset="C-EU" device="C0603" value="0.1nF"/>
+<part name="C13" library="rcl" deviceset="C-EU" device="C0603" value="0.1uF"/>
+<part name="C14" library="rcl" deviceset="C-EU" device="C0603" value="0.1uF"/>
 <part name="GND25" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND27" library="SparkFun" deviceset="GND" device=""/>
 <part name="U$9" library="microbuilder" deviceset="AGND" device=""/>
@@ -10245,7 +10245,7 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 <part name="GND30" library="supply1" deviceset="GND" device=""/>
 <part name="RN1" library="resistor-dil" deviceset="4R-N" device="EXBS8V"/>
 <part name="RN2" library="resistor-dil" deviceset="4R-N" device="EXBS8V"/>
-<part name="C16" library="rcl" deviceset="C-EU" device="C0603" value="0.1nF"/>
+<part name="C16" library="rcl" deviceset="C-EU" device="C0603" value="0.1uF"/>
 <part name="D1" library="diode" deviceset="MBR0520LT" device=""/>
 <part name="SUPPLY4" library="SparkFun-Aesthetics" deviceset="V_USB" device=""/>
 <part name="SUPPLY6" library="SparkFun-Aesthetics" deviceset="V_BATT" device="" value="V_IN"/>
