@@ -3,13 +3,13 @@
 
 #define LEDS_ON_BOARD 8
 
-#define LED1 0
-#define LED2 1
-#define LED3 2
-#define LED4 3
-#define LED5 4
-#define LED6 5
-#define LED7 6
-#define LED8 7
+#define LED1 6
+#define LED2 12
+#define LED3 4
+#define LED4 30   // TX LED
+#define LED5 1
+#define LED6 0
+#define LED7 2
+#define LED8 3
 
 #endif // __LEDS__

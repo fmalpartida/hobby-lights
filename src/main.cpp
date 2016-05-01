@@ -11,7 +11,8 @@ bool wakeUp = false;
 
 program myProgram;
 serialMenu myInput;
-controller myController(controllerPeriod, 8, 9, 10, &myProgram);
+controller myController(controllerPeriod, UP_BUTTON, DOWN_BUTTON, SELECT_BUTTON,
+   &myProgram);
 
 // Define my ISR to wake the sequencer
 void myTimerInt ()
