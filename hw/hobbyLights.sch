@@ -10297,6 +10297,7 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 <wire x1="154.94" y1="43.18" x2="154.94" y2="182.88" width="0.6096" layer="97"/>
 <wire x1="154.94" y1="182.88" x2="218.44" y2="182.88" width="0.6096" layer="97"/>
 <wire x1="218.44" y1="182.88" x2="218.44" y2="43.18" width="0.6096" layer="97"/>
+<text x="380.492" y="6.35" size="3.81" layer="95" ratio="12">B</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="111.76" y="33.02"/>
