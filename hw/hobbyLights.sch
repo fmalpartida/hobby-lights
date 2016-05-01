@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.4.0">
+<eagle version="7.0.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="yes"/>
@@ -246,11 +246,11 @@
 <text x="3.175" y="-3.556" size="1.016" layer="27" font="vector" ratio="12" rot="R180">&gt;VALUE</text>
 </package>
 <package name="USB_MICRO_B">
-<smd name="D+" x="0" y="2.675" dx="0.4" dy="1.6" layer="1" rot="R180"/>
-<smd name="D-" x="-0.65" y="2.675" dx="0.4" dy="1.6" layer="1" rot="R180"/>
-<smd name="VBUS" x="-1.3" y="2.675" dx="0.4" dy="1.6" layer="1" rot="R180"/>
-<smd name="ID" x="0.65" y="2.675" dx="0.4" dy="1.6" layer="1" rot="R180"/>
-<smd name="GND" x="1.3" y="2.675" dx="0.4" dy="1.6" layer="1" rot="R180"/>
+<smd name="D+" x="0" y="2.9" dx="0.4" dy="1.7" layer="1" rot="R180"/>
+<smd name="D-" x="-0.65" y="2.9" dx="0.4" dy="1.7" layer="1" rot="R180"/>
+<smd name="VBUS" x="-1.3" y="2.9" dx="0.4" dy="1.7" layer="1" rot="R180"/>
+<smd name="ID" x="0.65" y="2.9" dx="0.4" dy="1.7" layer="1" rot="R180"/>
+<smd name="GND" x="1.3" y="2.9" dx="0.4" dy="1.7" layer="1" rot="R180"/>
 <smd name="S2" x="-1.25" y="0" dx="1.9" dy="1.9" layer="1" rot="R180"/>
 <smd name="S3" x="1.25" y="0" dx="1.9" dy="1.9" layer="1" rot="R180"/>
 <wire x1="-4.635" y1="-2.75" x2="4.635" y2="-2.75" width="0.2032" layer="51"/>
@@ -270,8 +270,8 @@
 <wire x1="-4.635" y1="-0.6" x2="-4.6" y2="-0.6" width="0.2032" layer="51"/>
 <text x="-1.905" y="4.699" size="1.016" layer="25" font="vector" ratio="12">&gt;NAME</text>
 <text x="3.175" y="-3.556" size="1.016" layer="27" font="vector" ratio="12" rot="R180">&gt;VALUE</text>
-<pad name="S1" x="-3.5" y="0" drill="1.2"/>
-<pad name="S4" x="3.5" y="0" drill="1.2"/>
+<pad name="S1" x="-3.5" y="0" drill="1.1"/>
+<pad name="S4" x="3.5" y="0" drill="1.1"/>
 <smd name="S6" x="3.3" y="2.425" dx="1.4" dy="1.4" layer="1"/>
 <smd name="S5" x="-3.3" y="2.425" dx="1.4" dy="1.4" layer="1"/>
 <wire x1="-4.4175" y1="3.635" x2="-1.8" y2="3.635" width="0.254" layer="21"/>
@@ -321,9 +321,9 @@
 <text x="0" y="3.175" size="1.27" layer="21" ratio="12">&gt;NAME</text>
 </package>
 <package name="SSOP3">
-<smd name="1" x="-0.95" y="-0.8" dx="0.8" dy="0.5" layer="1" rot="R90"/>
-<smd name="2" x="0.95" y="-0.8" dx="0.8" dy="0.5" layer="1" rot="R90"/>
-<smd name="3" x="0" y="0.8" dx="0.8" dy="0.5" layer="1" rot="R90"/>
+<smd name="1" x="-0.95" y="-0.8" dx="1" dy="0.5" layer="1" rot="R90"/>
+<smd name="2" x="0.95" y="-0.8" dx="1" dy="0.5" layer="1" rot="R90"/>
+<smd name="3" x="0" y="0.8" dx="1" dy="0.5" layer="1" rot="R90"/>
 <wire x1="-0.635" y1="-0.635" x2="0.635" y2="-0.635" width="0.127" layer="21"/>
 <wire x1="1.27" y1="-0.635" x2="1.5875" y2="-0.635" width="0.127" layer="21"/>
 <wire x1="1.5875" y1="-0.635" x2="1.5875" y2="0.635" width="0.127" layer="21"/>
@@ -8818,9 +8818,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="1.6" y1="0.65" x2="1.6" y2="-0.65" width="0.127" layer="51"/>
 <wire x1="1.6" y1="-0.65" x2="-1.6" y2="-0.65" width="0.127" layer="51"/>
 <wire x1="-1.6" y1="-0.65" x2="-1.6" y2="0.65" width="0.127" layer="51"/>
-<smd name="1" x="-1.2" y="0" dx="0.3302" dy="1.85" layer="1"/>
-<smd name="2" x="0" y="0" dx="0.3302" dy="1.85" layer="1"/>
-<smd name="3" x="1.2" y="0" dx="0.3302" dy="1.85" layer="1"/>
+<smd name="1" x="-1.2" y="0" dx="0.4" dy="1.85" layer="1"/>
+<smd name="2" x="0" y="0" dx="0.4" dy="1.85" layer="1"/>
+<smd name="3" x="1.2" y="0" dx="0.4" dy="1.85" layer="1"/>
 <text x="-0.889" y="1.27" size="0.4064" layer="25">&gt;Name</text>
 <text x="-0.889" y="-1.524" size="0.4064" layer="27">&gt;Value</text>
 </package>
@@ -10188,9 +10188,9 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 <part name="R8" library="rcl" deviceset="R-EU_" device="R0603" value="10k"/>
 <part name="R9" library="rcl" deviceset="R-EU_" device="R0603" value="10k"/>
 <part name="R10" library="rcl" deviceset="R-EU_" device="R0603" value="10k"/>
-<part name="C5" library="rcl" deviceset="C-EU" device="C0603" value="0.1uF"/>
-<part name="C6" library="rcl" deviceset="C-EU" device="C0603" value="0.1uF"/>
-<part name="C7" library="rcl" deviceset="C-EU" device="C0603" value="0.1uF"/>
+<part name="C5" library="rcl" deviceset="C-EU" device="C0603" value="0.1nF"/>
+<part name="C6" library="rcl" deviceset="C-EU" device="C0603" value="0.1nF"/>
+<part name="C7" library="rcl" deviceset="C-EU" device="C0603" value="0.1nF"/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
@@ -10252,6 +10252,8 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 <part name="VCC1" library="supply1" deviceset="VCCINT" device=""/>
 <part name="VCC2" library="supply1" deviceset="VCCINT" device=""/>
 <part name="SUPPLY7" library="SparkFun-Aesthetics" deviceset="V_BATT" device="" value="V_IN"/>
+<part name="C17" library="rcl" deviceset="C-EU" device="C0603" value="1uF"/>
+<part name="GND16" library="SparkFun" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -10352,14 +10354,22 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 <instance part="U4" gate="G$1" x="325.12" y="91.44"/>
 <instance part="GND18" gate="1" x="368.3" y="104.14" rot="MR0"/>
 <instance part="GND19" gate="1" x="287.02" y="53.34"/>
-<instance part="P+2" gate="G$1" x="284.48" y="104.14"/>
+<instance part="P+2" gate="G$1" x="284.48" y="106.68" smashed="yes">
+<attribute name="VALUE" x="285.75" y="109.474" size="1.778" layer="96"/>
+</instance>
 <instance part="Y1" gate="G$1" x="274.32" y="73.66"/>
 <instance part="GND22" gate="1" x="274.32" y="53.34"/>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
 <instance part="FRAME1" gate="G$2" x="287.02" y="0"/>
 <instance part="R11" gate="G$1" x="368.3" y="111.76" rot="R270"/>
-<instance part="C8" gate="G$1" x="261.62" y="137.16"/>
-<instance part="C9" gate="G$1" x="269.24" y="137.16"/>
+<instance part="C8" gate="G$1" x="261.62" y="137.16" smashed="yes">
+<attribute name="NAME" x="263.144" y="137.541" size="1.778" layer="95"/>
+<attribute name="VALUE" x="254.254" y="132.207" size="1.778" layer="96"/>
+</instance>
+<instance part="C9" gate="G$1" x="269.24" y="137.16" smashed="yes">
+<attribute name="NAME" x="270.764" y="137.541" size="1.778" layer="95"/>
+<attribute name="VALUE" x="262.382" y="132.207" size="1.778" layer="96"/>
+</instance>
 <instance part="C10" gate="G$1" x="266.7" y="88.9"/>
 <instance part="C12" gate="G$1" x="276.86" y="137.16"/>
 <instance part="GND24" gate="1" x="198.12" y="142.24"/>
@@ -10408,7 +10418,10 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 <instance part="RN2" gate="B" x="187.96" y="238.76"/>
 <instance part="RN2" gate="C" x="187.96" y="233.68"/>
 <instance part="RN2" gate="D" x="187.96" y="228.6"/>
-<instance part="C16" gate="G$1" x="251.46" y="137.16"/>
+<instance part="C16" gate="G$1" x="251.46" y="137.16" smashed="yes">
+<attribute name="NAME" x="252.984" y="137.541" size="1.778" layer="95"/>
+<attribute name="VALUE" x="242.824" y="132.461" size="1.778" layer="96"/>
+</instance>
 <instance part="D1" gate="G$1" x="15.24" y="210.82" smashed="yes" rot="R90">
 <attribute name="NAME" x="13.462" y="212.1154" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="11.7094" y="194.564" size="1.778" layer="96" rot="R90"/>
@@ -10418,6 +10431,8 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 <instance part="VCC1" gate="G$1" x="33.02" y="220.98"/>
 <instance part="VCC2" gate="G$1" x="96.52" y="30.48"/>
 <instance part="SUPPLY7" gate="G$1" x="121.92" y="99.06"/>
+<instance part="C17" gate="G$1" x="276.86" y="104.14"/>
+<instance part="GND16" gate="1" x="276.86" y="96.52"/>
 </instances>
 <busses>
 </busses>
@@ -10628,6 +10643,10 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 <segment>
 <pinref part="C11" gate="G$1" pin="2"/>
 <pinref part="GND30" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="C17" gate="G$1" pin="2"/>
+<pinref part="GND16" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -11211,9 +11230,12 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 <net name="3.3V" class="0">
 <segment>
 <wire x1="284.48" y1="99.06" x2="302.26" y2="99.06" width="0.1524" layer="91"/>
-<wire x1="284.48" y1="99.06" x2="284.48" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="284.48" y1="99.06" x2="284.48" y2="106.68" width="0.1524" layer="91"/>
 <pinref part="U4" gate="G$1" pin="UCAP"/>
 <pinref part="P+2" gate="G$1" pin="3.3V"/>
+<pinref part="C17" gate="G$1" pin="1"/>
+<wire x1="284.48" y1="106.68" x2="276.86" y2="106.68" width="0.1524" layer="91"/>
+<junction x="284.48" y="106.68"/>
 </segment>
 </net>
 <net name="N$13" class="0">
