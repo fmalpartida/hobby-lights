@@ -9,11 +9,7 @@
 
 button::button(int myPin)
 {
-   pinMode (myPin, INPUT_PULLUP);
-
-   IOregister = fio_pinToOutputRegister ( pin );
-   IObit = fio_pinToBit(pin);
-   pin = myPin;
+   setupButton(myPin);
 
    _myState = IDLE;
 
@@ -22,10 +18,7 @@ button::button(int myPin)
 button::button (int myPin, buttonCallBack click, buttonCallBack doubleClick,
    buttonCallBack longClick)
 {
-   pinMode (myPin, INPUT_PULLUP);
-   pin = myPin;
-   IOregister = fio_pinToOutputRegister ( pin );
-   IObit = fio_pinToBit(pin);
+   setupButton(myPin);
 
    // Setup event callbacks
    clickAction = click;
@@ -72,6 +65,7 @@ button::t_ButtonState button::getState()
 // method called every TTI
 button::t_buttonEvent button::getEvent()
 {
+   //pinMode (pin, INPUT);
    t_ButtonState buttonState = this->getState();
    t_buttonEvent retVal = NONE;
    t_buttonStates currentState = _myState;
@@ -160,7 +154,7 @@ button::t_buttonEvent button::getEvent()
       default:
          break;
       }
-
+#if DEBUG
       if ( currentState != _myState )
       {
          Serial.print (pin);
@@ -169,7 +163,17 @@ button::t_buttonEvent button::getEvent()
          Serial.print (", ");
          Serial.println(_myState);
       }
+#endif
       currentState = _myState;
 
    return (retVal);
+}
+
+void button::setupButton(int myPin)
+{
+   pinMode (myPin, INPUT);
+
+   IOregister = fio_pinToOutputRegister ( pin );
+   IObit = fio_pinToBit(pin);
+   pin = myPin;
 }

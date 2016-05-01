@@ -24,19 +24,19 @@ extern void selectEventProgram();
 extern void upEventFreq ();
 extern void downEventFreq ();
 
-controller::controller(uint8_t scanPeriod, int bUp, int bDown, int bSelect,
-   program *thisProgram)
+controller::controller(uint8_t scanPeriod, button *bUp, button *bDown,
+   button *bSelect, program *thisProgram)
    {
       _scanPeriod = scanPeriod;
 
-      up = new button(bUp);
-      down = new button(bDown);
-      select = new button(bSelect);
+      up = bUp;
+      down = bDown;
+      select = bSelect;
       _myProgram = thisProgram;
 
       _myState = PROGRAM_MODE;
-      up->setActions(upEventProgram, NULL, NULL);
-      down->setActions(downEventProgram, NULL, NULL);
+      up->setActions(upEventProgram, upEventProgram, NULL);
+      down->setActions(downEventProgram, downEventProgram, NULL);
    }
 
    void controller::monitorKeyboard()
@@ -67,7 +67,9 @@ controller::controller(uint8_t scanPeriod, int bUp, int bDown, int bSelect,
                transitionCounter = INIDICATION_TIMEOUT;
 
                _myState = INDICATION_PRG_FREQ;
+#if DEBUT
                Serial.println("TO FREQUENCY");
+#endif
             }
 
             break;
@@ -82,8 +84,8 @@ controller::controller(uint8_t scanPeriod, int bUp, int bDown, int bSelect,
                _myState = FREQ_MODE;
                _myProgram->loadProgram(_myProgram->getStoreProgram(), false);
                _myProgram->setPeriod(_myProgram->getStorePeriod(), false);
-               up->setActions(upEventFreq, NULL, NULL);
-               down->setActions(downEventFreq, NULL, NULL);
+               up->setActions(upEventFreq, upEventFreq, NULL);
+               down->setActions(downEventFreq, downEventFreq, NULL);
             }
             transitionCounter--;
 
@@ -97,8 +99,8 @@ controller::controller(uint8_t scanPeriod, int bUp, int bDown, int bSelect,
             {
                _myProgram->loadProgram(_myProgram->getStoreProgram(), false);
                _myProgram->setPeriod(_myProgram->getStorePeriod(), false);
-               up->setActions(upEventProgram, NULL, NULL);
-               down->setActions(downEventProgram, NULL, NULL);
+               up->setActions(upEventProgram, upEventProgram, NULL);
+               down->setActions(downEventProgram, downEventProgram, NULL);
                _myState = PROGRAM_MODE;
             }
             transitionCounter--;
@@ -112,7 +114,9 @@ controller::controller(uint8_t scanPeriod, int bUp, int bDown, int bSelect,
                _myProgram->setPeriod(INIDICATION_TIMEOUT, false);
                transitionCounter = INIDICATION_TIMEOUT;
                _myState = INDICATION_FREQ_PRG;
-               Serial.println("TO PROGRAM");
+#if DEBUT
+               Serial.println("TO FREQUENCY");
+#endif
             }
             break;
 
@@ -147,7 +151,7 @@ controller::controller(uint8_t scanPeriod, int bUp, int bDown, int bSelect,
    {
       uint16_t newFreq;
 
-      newFreq = (_myProgram->getPeriod() + 1) % 512;
+      newFreq = (_myProgram->getPeriod() + 2) % 512;
       _myProgram->setPeriod(newFreq, true);
    }
 
@@ -155,9 +159,9 @@ controller::controller(uint8_t scanPeriod, int bUp, int bDown, int bSelect,
    {
       uint16_t newFreq = _myProgram->getPeriod();
 
-      if (newFreq > 1)
+      if (newFreq > 2)
       {
-         newFreq--;
+         newFreq -= 2;
       }
       _myProgram->setPeriod(newFreq, true);
    }

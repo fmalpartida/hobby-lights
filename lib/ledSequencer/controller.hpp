@@ -12,7 +12,7 @@ class controller
    button *select;
 
 public:
-   controller(uint8_t scanPeriod, int bUp, int bDown, int bSelect,
+   controller(uint8_t scanPeriod, button *bUp, button *bDown, button *bSelect,
       program *thisProgram);
 
    void monitorKeyboard();

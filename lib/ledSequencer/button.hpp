@@ -79,5 +79,8 @@ public:
    // Button event
    t_buttonEvent getEvent();
 
+private:
+   void setupButton(int);
+
 };
 #endif // __BUTTON__
