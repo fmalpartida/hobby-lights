@@ -14,15 +14,17 @@ typedef enum
 
 uint8_t _scanPeriod;
 t_controllerStates _myState;
+static uint16_t _transitionCounter = CNTRLLER_TRANS_COUNTER;
 
 program *_myProgram;
 
 extern void upEventProgram();
 extern void downEventProgram();
-extern void selectEventProgram();
 
 extern void upEventFreq ();
 extern void downEventFreq ();
+
+extern void selectDoubleClick ();
 
 controller::controller(uint8_t scanPeriod, button *bUp, button *bDown,
    button *bSelect, program *thisProgram)
@@ -37,13 +39,14 @@ controller::controller(uint8_t scanPeriod, button *bUp, button *bDown,
       _myState = PROGRAM_MODE;
       up->setActions(upEventProgram, upEventProgram, NULL);
       down->setActions(downEventProgram, downEventProgram, NULL);
+      select->setActions(NULL, selectDoubleClick, NULL);
    }
 
    void controller::monitorKeyboard()
    {
       button::t_buttonEvent selectEvent;
       static uint8_t counter = _scanPeriod;
-      static uint16_t transitionCounter = 100;
+
 
       counter--;
 
@@ -64,10 +67,10 @@ controller::controller(uint8_t scanPeriod, button *bUp, button *bDown,
             {
                _myProgram->loadProgram(INDICATION_PROGRAM, false);
                _myProgram->setPeriod(INIDICATION_TIMEOUT, false);
-               transitionCounter = INIDICATION_TIMEOUT;
+               _transitionCounter = INIDICATION_TIMEOUT;
 
                _myState = INDICATION_PRG_FREQ;
-#if DEBUT
+#if DEBUG
                Serial.println("TO FREQUENCY");
 #endif
             }
@@ -79,7 +82,7 @@ controller::controller(uint8_t scanPeriod, button *bUp, button *bDown,
             // If the counter is 0, transition to the frequency programming
             // mode. Load the program that was in memory and reconfigure
             // the actions.
-            if (transitionCounter == 0)
+            if (_transitionCounter == 0)
             {
                _myState = FREQ_MODE;
                _myProgram->loadProgram(_myProgram->getStoreProgram(), false);
@@ -87,7 +90,7 @@ controller::controller(uint8_t scanPeriod, button *bUp, button *bDown,
                up->setActions(upEventFreq, upEventFreq, NULL);
                down->setActions(downEventFreq, downEventFreq, NULL);
             }
-            transitionCounter--;
+            _transitionCounter--;
 
             break;
 
@@ -95,7 +98,7 @@ controller::controller(uint8_t scanPeriod, button *bUp, button *bDown,
             // If the counter is 0, transition to the program programming
             // mode. Load the program that was in memory and reconfigure
             // the actions.
-            if (transitionCounter == 0)
+            if (_transitionCounter == 0)
             {
                _myProgram->loadProgram(_myProgram->getStoreProgram(), false);
                _myProgram->setPeriod(_myProgram->getStorePeriod(), false);
@@ -103,7 +106,7 @@ controller::controller(uint8_t scanPeriod, button *bUp, button *bDown,
                down->setActions(downEventProgram, downEventProgram, NULL);
                _myState = PROGRAM_MODE;
             }
-            transitionCounter--;
+            _transitionCounter--;
             break;
 
             case FREQ_MODE:
@@ -112,9 +115,9 @@ controller::controller(uint8_t scanPeriod, button *bUp, button *bDown,
             {
                _myProgram->loadProgram(INDICATION_PROGRAM, false);
                _myProgram->setPeriod(INIDICATION_TIMEOUT, false);
-               transitionCounter = INIDICATION_TIMEOUT;
+               _transitionCounter = INIDICATION_TIMEOUT;
                _myState = INDICATION_FREQ_PRG;
-#if DEBUT
+#if DEBUG
                Serial.println("TO FREQUENCY");
 #endif
             }
@@ -126,6 +129,8 @@ controller::controller(uint8_t scanPeriod, button *bUp, button *bDown,
       }
    }
 
+
+   // Private static methods
    void upEventProgram ()
    {
       uint16_t newProgram;
@@ -147,7 +152,7 @@ controller::controller(uint8_t scanPeriod, button *bUp, button *bDown,
       _myProgram->loadProgram(newProgram, true);
    }
 
-   void upEventFreq ()
+   void downEventFreq ()
    {
       uint16_t newFreq;
 
@@ -155,7 +160,7 @@ controller::controller(uint8_t scanPeriod, button *bUp, button *bDown,
       _myProgram->setPeriod(newFreq, true);
    }
 
-   void downEventFreq()
+   void upEventFreq()
    {
       uint16_t newFreq = _myProgram->getPeriod();
 
@@ -167,8 +172,7 @@ controller::controller(uint8_t scanPeriod, button *bUp, button *bDown,
    }
 
 
-
-   void selectEventProgram()
+   void selectDoubleClick ()
    {
-
+      _myProgram->loadProgram(0, true);
    }

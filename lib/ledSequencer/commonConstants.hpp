@@ -16,9 +16,11 @@ const int controllerPeriod  = CONTROLLER_PERIOD * TIMER_TICKS_PER_MS;  // Main c
 #define INIDICATION_TIMEOUT   1500/CONTROLLER_PERIOD
 
 
+#define CNTRLLER_TRANS_COUNTER 100 //Controller transition counter
+
 // Button pind definition
-#define UP_BUTTON     10
-#define DOWN_BUTTON   8
+#define UP_BUTTON     8
+#define DOWN_BUTTON   10
 #define SELECT_BUTTON 9
 
 // LED pin definition
