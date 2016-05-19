@@ -173,19 +173,6 @@ t_sequenceDesc diorama4[LEDS_ON_BOARD] =
    {LED8, BURSTLP_1_90}
 };
 
-// All blinking blink
-t_sequenceDesc blink[LEDS_ON_BOARD] =
-{
-   {LED1, BLINK_0},
-   {LED2, BLINK_0},
-   {LED3, BLINK_0},
-   {LED4, BLINK_0},
-   {LED5, BLINK_0},
-   {LED6, BLINK_0},
-   {LED7, BLINK_0},
-   {LED8, BLINK_0}
-};
-
 // Chaser following patern
 t_sequenceDesc chaser1[LEDS_ON_BOARD] =
 {
@@ -261,6 +248,32 @@ t_sequenceDesc user[LEDS_ON_BOARD] =
    {LED8, FAST_BLINK_LP_0}
 };
 
+// All blinking blink
+t_sequenceDesc blink[LEDS_ON_BOARD] =
+{
+   {LED1, BLINK_0},
+   {LED2, BLINK_0},
+   {LED3, BLINK_0},
+   {LED4, BLINK_0},
+   {LED5, BLINK_0},
+   {LED6, BLINK_0},
+   {LED7, BLINK_0},
+   {LED8, BLINK_0}
+};
+
+// All blinking alternating
+t_sequenceDesc blinkAltern[LEDS_ON_BOARD] =
+{
+   {LED1, BLINK_0},
+   {LED2, BLINK_90},
+   {LED3, BLINK_0},
+   {LED4, BLINK_90},
+   {LED5, BLINK_0},
+   {LED6, BLINK_90},
+   {LED7, BLINK_0},
+   {LED8, BLINK_90}
+};
+
 const char userDesc[] PROGMEM = "USER DEFINED";
 const char airplane1Desc[] PROGMEM = "AIRPLANE 1";
 const char airplane2Desc[] PROGMEM = "AIRPLANE 2";
@@ -282,15 +295,16 @@ const char falconLightsDesc[] PROGMEM = "BANDAI FALCON";
 const char fixedDesc[] PROGMEM = "FIXED";
 
 const char blinkDesc[] PROGMEM = "BLINK";
-
+const char blinkAltDesc[] PROGMEM = "BLINK ALT.";
 
 // Predefined program names
 const char * const names[] PROGMEM =
 { userDesc, airplane1Desc, airplane2Desc, helicopterDesc, emergencyCar1Desc,
    emergencyCar2Desc, shots1Desc, shots2Desc, diorama1Desc, diorama2Desc, diorama3Desc,
    diorama4Desc, chaser1Desc, chaser2Desc, allFlickerDesc, allFastBlinkDesc,
-   falconLightsDesc, fixedDesc,
+   falconLightsDesc,
 
+   blinkAltDesc, fixedDesc,
    // Last all blink
    blinkDesc
 
@@ -300,8 +314,9 @@ const char * const names[] PROGMEM =
 t_sequenceDesc *demoSequence[] =
 { user, airplane1, airplane2, helicopter, emergencyCar1, emergencyCar2,
    gunShot1, gunShot2, diorama1, diorama2, diorama3, diorama4, chaser1,
-   chaser2, allFlicker, allFastBlick, falconLights, allFixed,
+   chaser2, allFlicker, allFastBlick, falconLights,
 
+   blinkAltern, allFixed,
    // Last all blink
    blink
 };
