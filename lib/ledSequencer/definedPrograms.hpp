@@ -15,6 +15,19 @@ typedef struct
    uint8_t seqIndex;
 } t_sequenceDesc;
 
+// user defined sequence
+t_sequenceDesc user[LEDS_ON_BOARD] =
+{
+   {LED1, FAST_BLINK_LP_0},
+   {LED2, FAST_BLINK_LP_0},
+   {LED3, FAST_BLINK_LP_0},
+   {LED4, FAST_BLINK_LP_0},
+   {LED5, FAST_BLINK_LP_0},
+   {LED6, FAST_BLINK_LP_0},
+   {LED7, FAST_BLINK_LP_0},
+   {LED8, FAST_BLINK_LP_0}
+};
+
 // All fixed
 t_sequenceDesc allFixed[LEDS_ON_BOARD] =
 {
@@ -236,17 +249,6 @@ t_sequenceDesc falconLights[LEDS_ON_BOARD] =
    {LED8, FIXED}
 };
 
-t_sequenceDesc user[LEDS_ON_BOARD] =
-{
-   {LED1, FAST_BLINK_LP_0},
-   {LED2, FAST_BLINK_LP_0},
-   {LED3, FAST_BLINK_LP_0},
-   {LED4, FAST_BLINK_LP_0},
-   {LED5, FAST_BLINK_LP_0},
-   {LED6, FAST_BLINK_LP_0},
-   {LED7, FAST_BLINK_LP_0},
-   {LED8, FAST_BLINK_LP_0}
-};
 
 // All blinking blink
 t_sequenceDesc blink[LEDS_ON_BOARD] =
@@ -294,8 +296,8 @@ const char falconLightsDesc[] PROGMEM = "BANDAI FALCON";
 
 const char fixedDesc[] PROGMEM = "FIXED";
 
-const char blinkDesc[] PROGMEM = "BLINK";
 const char blinkAltDesc[] PROGMEM = "BLINK ALT.";
+const char blinkDesc[] PROGMEM = "BLINK";
 
 // Predefined program names
 const char * const names[] PROGMEM =
