@@ -250,6 +250,18 @@ t_sequenceDesc falconLights[LEDS_ON_BOARD] =
 };
 
 
+t_sequenceDesc cylonRaider[LEDS_ON_BOARD] =
+{
+   {LED1, CHASER_1},
+   {LED2, CHASER_2},
+   {LED3, CHASER_3},
+   {LED4, CHASER_4},
+   {LED5, CHASER_5},
+   {LED6, CHASER_6},
+   {LED7, RAND_FLICK_0},
+   {LED8, BURSTLP_0}
+};
+
 // All blinking blink
 t_sequenceDesc blink[LEDS_ON_BOARD] =
 {
@@ -293,6 +305,7 @@ const char chaser2Desc[] PROGMEM = "CHASER 2";
 const char allFlickerDesc[] PROGMEM = "ALL FLICKER";
 const char allFastBlinkDesc[] PROGMEM = "ALL FAST BLINK";
 const char falconLightsDesc[] PROGMEM = "BANDAI FALCON";
+const char cylonRaiderDesc[] PROGMEM = "CYLON RAIDER";
 
 const char fixedDesc[] PROGMEM = "FIXED";
 
@@ -304,7 +317,7 @@ const char * const names[] PROGMEM =
 { userDesc, airplane1Desc, airplane2Desc, helicopterDesc, emergencyCar1Desc,
    emergencyCar2Desc, shots1Desc, shots2Desc, diorama1Desc, diorama2Desc, diorama3Desc,
    diorama4Desc, chaser1Desc, chaser2Desc, allFlickerDesc, allFastBlinkDesc,
-   falconLightsDesc,
+   falconLightsDesc, cylonRaiderDesc,
 
    blinkAltDesc, fixedDesc,
    // Last all blink
@@ -316,7 +329,7 @@ const char * const names[] PROGMEM =
 t_sequenceDesc *demoSequence[] =
 { user, airplane1, airplane2, helicopter, emergencyCar1, emergencyCar2,
    gunShot1, gunShot2, diorama1, diorama2, diorama3, diorama4, chaser1,
-   chaser2, allFlicker, allFastBlick, falconLights,
+   chaser2, allFlicker, allFastBlick, falconLights, cylonRaider,
 
    blinkAltern, allFixed,
    // Last all blink
