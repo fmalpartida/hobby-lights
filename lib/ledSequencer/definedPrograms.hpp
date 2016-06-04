@@ -1,6 +1,6 @@
 #include <inttypes.h>
-#include <sequences.hpp>
-#include <leds.hpp>
+#include "sequences.hpp"
+#include "leds.hpp"
 #include <avr/pgmspace.h>
 
 
@@ -330,6 +330,19 @@ t_sequenceDesc blink[LEDS_ON_BOARD] =
 t_sequenceDesc blinkAltern1[LEDS_ON_BOARD] =
 {
    {LED1, BLINK_0},
+   {LED2, BLINK_135},
+   {LED3, BLINK_0},
+   {LED4, BLINK_135},
+   {LED5, BLINK_0},
+   {LED6, BLINK_135},
+   {LED7, BLINK_0},
+   {LED8, BLINK_135}
+};
+
+// All blinking alternating
+t_sequenceDesc blinkAltern2[LEDS_ON_BOARD] =
+{
+   {LED1, BLINK_0},
    {LED2, BLINK_90},
    {LED3, BLINK_0},
    {LED4, BLINK_90},
@@ -339,7 +352,7 @@ t_sequenceDesc blinkAltern1[LEDS_ON_BOARD] =
    {LED8, BLINK_90}
 };
 
-t_sequenceDesc blinkAltern2[LEDS_ON_BOARD] =
+t_sequenceDesc blinkAltern3[LEDS_ON_BOARD] =
 {
    {LED1, BLINK_0},
    {LED2, BLINK_180},
@@ -378,6 +391,7 @@ const char fixedDesc[] PROGMEM = "FIXED";
 
 const char blinkAlt1Desc[] PROGMEM = "BLINK ALT. 1";
 const char blinkAlt2Desc[] PROGMEM = "BLINK ALT. 2";
+const char blinkAlt3Desc[] PROGMEM = "BLINK ALT. 3";
 const char blinkDesc[] PROGMEM = "BLINK";
 
 // Predefined program names
@@ -388,7 +402,7 @@ const char * const names[] PROGMEM =
    allFlickerDesc, allFastBlinkDesc, falconLightsDesc, cylonRaiderDesc, cylonRaiderInvDesc,
    kitDesc,
 
-   blinkAlt1Desc, blinkAlt2Desc, fixedDesc,
+   blinkAlt1Desc, blinkAlt2Desc, blinkAlt3Desc, fixedDesc,
    // Last all blink
    blinkDesc
 
@@ -401,7 +415,7 @@ t_sequenceDesc *demoSequence[] =
    chaser2, countDownSeq, ncountDownSeq, allFlicker, allFastBlick, falconLights,
    cylonRaider, cylonRaiderInv, kit,
 
-   blinkAltern1,blinkAltern2, allFixed,
+   blinkAltern1,blinkAltern2, blinkAltern3, allFixed,
    // Last all blink
    blink
 };

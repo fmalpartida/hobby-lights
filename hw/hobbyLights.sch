@@ -10175,8 +10175,8 @@ Source: http://onsemi.com .. MBR0520LT1-D.pdf</description>
 </classes>
 <parts>
 <part name="U1" library="fmc" deviceset="MCP73831-2" device=""/>
-<part name="R1" library="rcl" deviceset="R-EU_" device="R0603" value="4K7"/>
-<part name="R2" library="rcl" deviceset="R-EU_" device="R0603" value="1K"/>
+<part name="R1" library="rcl" deviceset="R-EU_" device="R0603" value="3.3K"/>
+<part name="R2" library="rcl" deviceset="R-EU_" device="R0603" value="470R"/>
 <part name="C1" library="rcl" deviceset="C-EU" device="C0805" value="4.7uF"/>
 <part name="C2" library="rcl" deviceset="C-EU" device="C0805" value="4.7uF"/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>

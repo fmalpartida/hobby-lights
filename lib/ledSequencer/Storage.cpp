@@ -7,7 +7,7 @@
 #define STORAGE_VERSION 2
 
 #define DEFAULT_PROG    1
-#define DEFAULT_PERIOD 20
+#define DEFAULT_PERIOD 40
 
 typedef struct
 {

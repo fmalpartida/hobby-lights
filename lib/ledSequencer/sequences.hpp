@@ -18,7 +18,9 @@ uint16_t doubleBlink270[] = { 0b0000000000000000, 0b0000000011111111, 0b00000000
 
 // Long blinks
 uint16_t blink0[]   = { 0b1111111111111111, 0b0000000000000000 }; // 0 shift
+uint16_t blink45[]  = { 0b0000111111111111, 0b1111000000000000 }; // 45 shift
 uint16_t blink90[]  = { 0b0000000011111111, 0b1111111100000000 }; // 90 shift
+uint16_t blink135[] = { 0b0000000000001111, 0b1111111111110000 }; // 135 shift
 uint16_t blink180[] = { 0b0000000000000000, 0b1111111111111111 };   // 180 shift
 uint16_t blink270[] = { 0b1111111100000000, 0b0000000011111111 };   // 270 shift
 
@@ -112,7 +114,6 @@ uint16_t burstLP0_90[]  = {0b0000000000000000, 0b0100010111010111, 0b00000000000
 uint16_t burstLP1_90[]  = {0b0000000000000000, 0b1011101000101000, 0b0000000000000000};
 
 
-
 typedef struct
 {
    uint16_t *sequence;
@@ -193,6 +194,9 @@ typedef struct
 #define NCOUNT6             70
 #define NCOUNT7             71
 #define NCOUNT8             72
+
+#define BLINK_45            73
+#define BLINK_135           74
 
 #define SET_SEQUENCE(seq) seq, sizeof(seq)
 
@@ -288,6 +292,8 @@ t_sequence sequenceList[] =
    {SET_SEQUENCE(ncountDown7)},   // 71
    {SET_SEQUENCE(ncountDown8)},   // 72
 
+   {SET_SEQUENCE(blink45)},       // 73
+   {SET_SEQUENCE(blink135)}       // 74
 
 };
 

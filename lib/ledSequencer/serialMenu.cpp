@@ -8,10 +8,11 @@ command::command()
 
 void command::execute(program *myProgram)
 {
+   uint16_t numProgs = myProgram->getNumPrograms();
 
    if (myCommand == SET_PROGRAM )
    {
-      if ((value>= 0) && (value < myProgram->getNumPrograms()) &&
+      if ((value>= 0) && (value < numProgs) &&
          (value != myProgram->getCurrentProgram()))
          {
             myProgram->loadProgram(value, true); // load program and store
@@ -26,11 +27,8 @@ void command::execute(program *myProgram)
          }
    }
 
-   if (myCommand == LIST_PROGRAMS)
+   if (myCommand == LIST_PROGRAMS )
    {
-      uint16_t numProgs = myProgram->getNumPrograms();
-
-      Serial.println("Programs: ");
       for (uint16_t i=0; i < numProgs; i++)
       {
          Serial.print(i);
@@ -38,15 +36,41 @@ void command::execute(program *myProgram)
          Serial.println(myProgram->getProgramName(i));
       }
    }
+
+
+   if (myCommand == GET_INFO)
+   {
+      Serial.println("Programs: ");
+      for (uint16_t i=0; i < numProgs; i++)
+      {
+         Serial.print(i);
+         Serial.print(". ");
+         Serial.println(myProgram->getProgramName(i));
+      }
+      this->listCommands(myProgram);
+   }
 }
 
+// private methods
+void command::listCommands(program *currentProg)
+{
+   Serial.println("");
+   Serial.println("Current settings: ");
+   Serial.print("\tNum. Programs: ");
+   Serial.println(currentProg->getNumPrograms());
+   Serial.print("\tCurrent Program: ");
+   Serial.println(currentProg->getCurrentProgram());
+   Serial.print("\tCurrent Period: ");
+   Serial.println(currentProg->getPeriod());
+   Serial.print("Options: p <program id>, s <speed>, l (list programs), i (information)\n");
+}
 
-serialMenu::serialMenu()
+serialCommand::serialCommand()
 {
 
 }
 
-command *serialMenu::getCommand ( )
+command *serialCommand::getCommand ( )
 {
    static String inString = "";
    command *retVal = NULL;
@@ -69,6 +93,12 @@ command *serialMenu::getCommand ( )
          _command.myCommand = LIST_PROGRAMS;
       }
 
+      if (inChar == 'i')
+      {
+         _command.myCommand = GET_INFO;
+      }
+
+
       if (isDigit(inChar))
       {
          // convert the incoming byte to a char
@@ -86,18 +116,4 @@ command *serialMenu::getCommand ( )
       }
    }
    return (retVal);
-}
-
-
-void serialMenu::printOptions(program *currentProg)
-{
-   Serial.println("");
-   Serial.println("Current settings: ");
-   Serial.print("\tNum. Programs: ");
-   Serial.println(currentProg->getNumPrograms());
-   Serial.print("\tCurrent Program: ");
-   Serial.println(currentProg->getCurrentProgram());
-   Serial.print("\tCurrent Period: ");
-   Serial.println(currentProg->getPeriod());
-   Serial.print("Options: p <program id>, s <speed>, l (list programs)\n");
 }

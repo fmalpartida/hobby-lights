@@ -10,7 +10,7 @@
 bool wakeUp = false;
 
 program myProgram;
-serialMenu myInput;
+serialCommand myInput;
 button up(UP_BUTTON);
 button down(DOWN_BUTTON);
 button select(SELECT_BUTTON);
@@ -30,7 +30,7 @@ void setup ()
 {
    Serial.begin(115200);
    myProgram.init(0);
-   myInput.printOptions(&myProgram);
+   //myInput.printOptions(&myProgram);
 
    // Initialize the periodic timer
    Timer1.initialize(timerPeriod_us);
@@ -47,7 +47,7 @@ void loop ()
    if ( newCommand != NULL )
    {
       newCommand->execute(&myProgram);
-      myInput.printOptions(&myProgram);
+      //myInput.printOptions(&myProgram);
    }
 
    if (wakeUp)

@@ -7,6 +7,7 @@
 #define SET_PROGRAM   0
 #define SET_PERIOD    1
 #define LIST_PROGRAMS 2
+#define GET_INFO      3
 
 class command
 {
@@ -16,17 +17,20 @@ public:
 
    command();
    void execute(program *);
+
+private:
+   void listCommands(program *);
 };
 
-class serialMenu
+class serialCommand
 {
 
 public:
    command _command;
 
-   serialMenu();
+   serialCommand();
    command *getCommand();
-   void printOptions(program *);
+
 };
 
 #endif // __SERIAL_MENU__
