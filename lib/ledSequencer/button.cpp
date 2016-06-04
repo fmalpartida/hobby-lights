@@ -68,7 +68,6 @@ button::t_buttonEvent button::getEvent()
    //pinMode (pin, INPUT);
    t_ButtonState buttonState = this->getState();
    t_buttonEvent retVal = NONE;
-   t_buttonStates currentState = _myState;
 
    switch( _myState )
    {
@@ -164,7 +163,6 @@ button::t_buttonEvent button::getEvent()
          Serial.println(_myState);
       }
 #endif
-      currentState = _myState;
 
    return (retVal);
 }
