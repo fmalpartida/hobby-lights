@@ -14,8 +14,8 @@ static int sequenceLength;
 ledSequence _myChannels[LEDS_ON_BOARD];
 
 // Private program management variables
-static uint8_t _channelsAvail;  // number of available slots
-static uint8_t _used;           // number of used slots
+static uint8_t  _channelsAvail;  // number of available slots
+static uint8_t  _used;           // number of used slots
 static uint16_t _period;        // Wait delay after playing the entire sequence
 static uint16_t _currentPeriod; // Current period counter
 Storage store;                  // Added support for persisten storage
@@ -133,5 +133,64 @@ char *program::getProgramName(uint8_t progID )
    strcpy_P (buffer, ptr);
    return (buffer);
 }
+
+// print methods
+void program::printProgramList()
+{
+   for (int i=0; i < sequenceLength; i++)
+   {
+      Serial.print(i);
+      Serial.print(F(". "));
+      Serial.println(getProgramName(i));
+   }
+}
+
+void program::printProgramList(uint8_t tabs)
+{
+   uint8_t numTabs = tabs;
+   for (int i=0; i < sequenceLength; i++)
+   {
+      Serial.print(i);
+      Serial.print(F(". "));
+
+      // Tabulate the program list
+      // -------------------------
+      if (numTabs > 1)
+      {
+         Serial.print(getProgramName(i));
+         Serial.print(F("\t\t"));
+         numTabs--;
+      }
+      else
+      {
+         Serial.println(getProgramName(i));
+         numTabs = tabs;
+      }
+   }
+   Serial.println();
+}
+
+
+void program::printInfo ()
+{
+   Serial.println();
+   this->printVersion();
+
+   Serial.println();
+   Serial.println(F("Current settings: "));
+   Serial.print(F("\tNum. Programs: "));
+   Serial.println(sequenceLength);
+   Serial.print(F("\tCurrent Program: "));
+   Serial.println(progInMem);
+   Serial.print(F("\tCurrent Period: "));
+   Serial.println(_period);
+   Serial.print(F("Options: p <program id>, s <speed>, l (list programs), i (information)\n"));
+}
+
+void program::printVersion()
+{
+   store.printInfo();
+}
+
 // Private methods
 // -----------------------------------------------------------------------------

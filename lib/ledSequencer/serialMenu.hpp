@@ -18,8 +18,6 @@ public:
    command();
    void execute(program *);
 
-private:
-   void listCommands(program *);
 };
 
 class serialCommand

@@ -20,5 +20,10 @@ public:
    char *getProgramName(uint8_t);
    void loadProgram(uint8_t, bool store);
    void playProgram();
+
+   void printProgramList();
+   void printProgramList(uint8_t tabs);
+   void printInfo ();
+   void printVersion();
 };
 #endif // __PROGRAM__

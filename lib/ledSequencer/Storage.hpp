@@ -17,6 +17,8 @@ public:
    void setProgram(uint16_t);
    uint16_t getPeriod();
    void setPeriod(uint16_t);
+   char getHWVersion();
+   void printInfo();
 };
 
 #endif // __STORAGE__

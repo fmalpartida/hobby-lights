@@ -4,17 +4,23 @@
 
 
 #define SIGNATURE       0xbeaf
-#define STORAGE_VERSION 2
+#define STORAGE_VERSION 3
 
 #define DEFAULT_PROG    1
 #define DEFAULT_PERIOD 40
 
+#define HW_VERSION      'B'
+#define FIRM_VERSION    0x0200
+
 typedef struct
 {
-   uint16_t signature;
-   uint8_t version;
-   uint16_t program;
+   uint16_t  signature;
+   uint8_t   version;
+   uint16_t  program;
    uint16_t  period;
+
+   char HWVersion;
+   uint16_t firmwareVersion;
 } t_storageContents;
 
 t_storageContents myStore;
@@ -43,6 +49,9 @@ void Storage::init()
       myStore.version   = STORAGE_VERSION;
       myStore.program   = DEFAULT_PROG;
       myStore.period    = DEFAULT_PERIOD;
+
+      myStore.HWVersion = HW_VERSION;
+      myStore.firmwareVersion = FIRM_VERSION;
 
       writeStore();
    }
@@ -74,6 +83,19 @@ uint16_t Storage::getPeriod()
    return (retVal);
 }
 
+
+char Storage::getHWVersion()
+{
+   char retVal = ' ';
+
+   // If its initialized, read the contents
+   if (_init)
+   {
+      retVal = myStore.HWVersion;
+   }
+   return (retVal);
+}
+
 // Setters
 void Storage::setPeriod(uint16_t period)
 {
@@ -93,6 +115,7 @@ void Storage::setProgram(uint16_t program)
    }
 }
 
+
 // Private methods
 void Storage::writeStore()
 {
@@ -102,4 +125,18 @@ void Storage::writeStore()
 void Storage::readStore()
 {
    EEPROM.get(0, myStore);
+}
+
+void Storage::printInfo()
+{
+   Serial.print(F("Firmware version: "));
+   Serial.print(myStore.firmwareVersion && 0xFF00);
+   Serial.print(".");
+   Serial.println(myStore.firmwareVersion && 0x00FF);
+
+   Serial.print(F("HW Version: "));
+   Serial.println(myStore.HWVersion);
+
+   Serial.print(F("Storege Version: "));
+   Serial.println(myStore.version);
 }

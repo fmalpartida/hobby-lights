@@ -29,42 +29,19 @@ void command::execute(program *myProgram)
 
    if (myCommand == LIST_PROGRAMS )
    {
-      for (uint16_t i=0; i < numProgs; i++)
-      {
-         Serial.print(i);
-         Serial.print(". ");
-         Serial.println(myProgram->getProgramName(i));
-      }
+      myProgram->printProgramList();
    }
 
 
    if (myCommand == GET_INFO)
    {
-      Serial.println("Programs: ");
-      for (uint16_t i=0; i < numProgs; i++)
-      {
-         Serial.print(i);
-         Serial.print(". ");
-         Serial.println(myProgram->getProgramName(i));
-      }
-      this->listCommands(myProgram);
+      Serial.println(F("Programs: "));
+      myProgram->printProgramList(2);
+      myProgram->printInfo();
    }
 }
 
 // private methods
-void command::listCommands(program *currentProg)
-{
-   Serial.println("");
-   Serial.println("Current settings: ");
-   Serial.print("\tNum. Programs: ");
-   Serial.println(currentProg->getNumPrograms());
-   Serial.print("\tCurrent Program: ");
-   Serial.println(currentProg->getCurrentProgram());
-   Serial.print("\tCurrent Period: ");
-   Serial.println(currentProg->getPeriod());
-   Serial.print("Options: p <program id>, s <speed>, l (list programs), i (information)\n");
-}
-
 serialCommand::serialCommand()
 {
 
