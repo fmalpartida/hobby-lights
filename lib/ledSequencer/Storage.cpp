@@ -3,8 +3,11 @@
 #include <Storage.hpp>
 
 
-#define SIGNATURE 0xbeaf
+#define SIGNATURE       0xbeaf
 #define STORAGE_VERSION 2
+
+#define DEFAULT_PROG    1
+#define DEFAULT_PERIOD 40
 
 typedef struct
 {
@@ -38,8 +41,8 @@ void Storage::init()
    {
       myStore.signature = SIGNATURE;
       myStore.version   = STORAGE_VERSION;
-      myStore.program   = 1;
-      myStore.period    = 20;
+      myStore.program   = DEFAULT_PROG;
+      myStore.period    = DEFAULT_PERIOD;
 
       writeStore();
    }

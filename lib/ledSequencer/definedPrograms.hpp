@@ -1,6 +1,6 @@
 #include <inttypes.h>
-#include <sequences.hpp>
-#include <leds.hpp>
+#include "sequences.hpp"
+#include "leds.hpp"
 #include <avr/pgmspace.h>
 
 
@@ -14,6 +14,19 @@ typedef struct
    uint8_t led;
    uint8_t seqIndex;
 } t_sequenceDesc;
+
+// user defined sequence
+t_sequenceDesc user[LEDS_ON_BOARD] =
+{
+   {LED1, FAST_BLINK_LP_0},
+   {LED2, FAST_BLINK_LP_0},
+   {LED3, FAST_BLINK_LP_0},
+   {LED4, FAST_BLINK_LP_0},
+   {LED5, FAST_BLINK_LP_0},
+   {LED6, FAST_BLINK_LP_0},
+   {LED7, FAST_BLINK_LP_0},
+   {LED8, FAST_BLINK_LP_0}
+};
 
 // All fixed
 t_sequenceDesc allFixed[LEDS_ON_BOARD] =
@@ -173,19 +186,6 @@ t_sequenceDesc diorama4[LEDS_ON_BOARD] =
    {LED8, BURSTLP_1_90}
 };
 
-// All blinking blink
-t_sequenceDesc blink[LEDS_ON_BOARD] =
-{
-   {LED1, BLINK_0},
-   {LED2, BLINK_0},
-   {LED3, BLINK_0},
-   {LED4, BLINK_0},
-   {LED5, BLINK_0},
-   {LED6, BLINK_0},
-   {LED7, BLINK_0},
-   {LED8, BLINK_0}
-};
-
 // Chaser following patern
 t_sequenceDesc chaser1[LEDS_ON_BOARD] =
 {
@@ -212,6 +212,33 @@ t_sequenceDesc chaser2[LEDS_ON_BOARD] =
    {LED8, BLINKP_270B}
 };
 
+// Count down sequence
+t_sequenceDesc countDownSeq[LEDS_ON_BOARD] =
+{
+   {LED1, COUNT1},
+   {LED2, COUNT2},
+   {LED3, COUNT3},
+   {LED4, COUNT4},
+   {LED5, COUNT5},
+   {LED6, COUNT6},
+   {LED7, COUNT7},
+   {LED8, COUNT8}
+};
+
+// Negative count down sequence
+t_sequenceDesc ncountDownSeq[LEDS_ON_BOARD] =
+{
+   {LED1, NCOUNT1},
+   {LED2, NCOUNT2},
+   {LED3, NCOUNT3},
+   {LED4, NCOUNT4},
+   {LED5, NCOUNT5},
+   {LED6, NCOUNT6},
+   {LED7, NCOUNT7},
+   {LED8, NCOUNT8}
+};
+
+
 // All flicker random (space craft with may lights of buildings)
 t_sequenceDesc allFlicker[LEDS_ON_BOARD] =
 {
@@ -225,19 +252,119 @@ t_sequenceDesc allFlicker[LEDS_ON_BOARD] =
    {LED8, RAND_FLICK_180}
 };
 
-t_sequenceDesc user[LEDS_ON_BOARD] =
+t_sequenceDesc allFastBlick[LEDS_ON_BOARD] =
 {
-   {LED1, FAST_BLINK_LP_0},
-   {LED2, FAST_BLINK_LP_0},
-   {LED3, FAST_BLINK_LP_0},
-   {LED4, FAST_BLINK_LP_0},
-   {LED5, FAST_BLINK_LP_0},
-   {LED6, FAST_BLINK_LP_0},
-   {LED7, FAST_BLINK_LP_0},
-   {LED8, FAST_BLINK_LP_0}
+   {LED1, VFAST_BLINK_0},
+   {LED2, VFAST_BLINK_180},
+   {LED3, VFAST_BLINK_0},
+   {LED4, VFAST_BLINK_180},
+   {LED5, VFAST_BLINK_0},
+   {LED6, VFAST_BLINK_180},
+   {LED7, VFAST_BLINK_0},
+   {LED8, VFAST_BLINK_180}
 };
 
-const char fixedDesc[] PROGMEM = "FIXED";
+t_sequenceDesc falconLights[LEDS_ON_BOARD] =
+{
+   {LED1, RAND_FLICK_0},
+   {LED2, RAND_FLICK_180},
+   {LED3, FAST_BLINK_LP_0},
+   {LED4, FAST_BLINK_LP_180},
+   {LED5, FIXED},
+   {LED6, FIXED},
+   {LED7, FIXED},
+   {LED8, FIXED}
+};
+
+
+t_sequenceDesc cylonRaider[LEDS_ON_BOARD] =
+{
+   {LED1, CHASER_1},
+   {LED2, CHASER_2},
+   {LED3, CHASER_3},
+   {LED4, CHASER_4},
+   {LED5, CHASER_5},
+   {LED6, CHASER_6},
+   {LED7, RAND_FLICK_0},
+   {LED8, BURSTLP_0}
+};
+
+t_sequenceDesc cylonRaiderInv[LEDS_ON_BOARD] =
+{
+   {LED1, NCHASER_1},
+   {LED2, NCHASER_2},
+   {LED3, NCHASER_3},
+   {LED4, NCHASER_4},
+   {LED5, NCHASER_5},
+   {LED6, NCHASER_6},
+   {LED7, RAND_FLICK_0},
+   {LED8, BURSTLP_0}
+};
+
+t_sequenceDesc kit[LEDS_ON_BOARD] =
+{
+   {LED1, CHASER_1},
+   {LED2, CHASER_2},
+   {LED3, CHASER_3},
+   {LED4, CHASER_4},
+   {LED5, CHASER_5},
+   {LED6, CHASER_6},
+   {LED7, BLINK_0},
+   {LED8, FIXED}
+};
+
+// All blinking blink
+t_sequenceDesc blink[LEDS_ON_BOARD] =
+{
+   {LED1, BLINK_0},
+   {LED2, BLINK_0},
+   {LED3, BLINK_0},
+   {LED4, BLINK_0},
+   {LED5, BLINK_0},
+   {LED6, BLINK_0},
+   {LED7, BLINK_0},
+   {LED8, BLINK_0}
+};
+
+// All blinking alternating
+t_sequenceDesc blinkAltern1[LEDS_ON_BOARD] =
+{
+   {LED1, BLINK_0},
+   {LED2, BLINK_135},
+   {LED3, BLINK_0},
+   {LED4, BLINK_135},
+   {LED5, BLINK_0},
+   {LED6, BLINK_135},
+   {LED7, BLINK_0},
+   {LED8, BLINK_135}
+};
+
+// All blinking alternating
+t_sequenceDesc blinkAltern2[LEDS_ON_BOARD] =
+{
+   {LED1, BLINK_0},
+   {LED2, BLINK_90},
+   {LED3, BLINK_0},
+   {LED4, BLINK_90},
+   {LED5, BLINK_0},
+   {LED6, BLINK_90},
+   {LED7, BLINK_0},
+   {LED8, BLINK_90}
+};
+
+t_sequenceDesc blinkAltern3[LEDS_ON_BOARD] =
+{
+   {LED1, BLINK_0},
+   {LED2, BLINK_180},
+   {LED3, BLINK_0},
+   {LED4, BLINK_180},
+   {LED5, BLINK_0},
+   {LED6, BLINK_180},
+   {LED7, BLINK_0},
+   {LED8, BLINK_180}
+};
+
+const char userDesc[] PROGMEM = "USER DEFINED";
 const char airplane1Desc[] PROGMEM = "AIRPLANE 1";
 const char airplane2Desc[] PROGMEM = "AIRPLANE 2";
 const char helicopterDesc[] PROGMEM = "HELICOPTER";
@@ -249,29 +376,48 @@ const char diorama1Desc [] PROGMEM = "DIORAMA 1";
 const char diorama2Desc [] PROGMEM = "DIORAMA 2";
 const char diorama3Desc [] PROGMEM = "DIORAMA 3";
 const char diorama4Desc [] PROGMEM = "DIORAMA 4";
-const char blinkDesc[] PROGMEM = "BLINK";
 const char chaser1Desc[] PROGMEM = "CHASER 1";
 const char chaser2Desc[] PROGMEM = "CHASER 2";
 const char allFlickerDesc[] PROGMEM = "ALL FLICKER";
+const char allFastBlinkDesc[] PROGMEM = "ALL FAST BLINK";
+const char falconLightsDesc[] PROGMEM = "BANDAI FALCON";
+const char cylonRaiderDesc[] PROGMEM = "CYLON RAIDER";
+const char cylonRaiderInvDesc[] PROGMEM = "CYLON RAIDER INV";
+const char kitDesc[] PROGMEM = "KIT";
+const char countDownSeqDesc[] PROGMEM = "COUNT DOWN";
+const char ncountDownSeqDesc[] PROGMEM = "COUNT DOWN INV";
 
-const char userDesc[] PROGMEM = "USER DEFINED";
+const char fixedDesc[] PROGMEM = "FIXED";
+
+const char blinkAlt1Desc[] PROGMEM = "BLINK ALT. 1";
+const char blinkAlt2Desc[] PROGMEM = "BLINK ALT. 2";
+const char blinkAlt3Desc[] PROGMEM = "BLINK ALT. 3";
+const char blinkDesc[] PROGMEM = "BLINK";
 
 // Predefined program names
 const char * const names[] PROGMEM =
-{ fixedDesc, airplane1Desc, airplane2Desc, helicopterDesc, emergencyCar1Desc,
+{ userDesc, airplane1Desc, airplane2Desc, helicopterDesc, emergencyCar1Desc,
    emergencyCar2Desc, shots1Desc, shots2Desc, diorama1Desc, diorama2Desc, diorama3Desc,
-   diorama4Desc, blinkDesc, chaser1Desc, chaser2Desc, allFlickerDesc,
+   diorama4Desc, chaser1Desc, chaser2Desc, countDownSeqDesc, ncountDownSeqDesc,
+   allFlickerDesc, allFastBlinkDesc, falconLightsDesc, cylonRaiderDesc, cylonRaiderInvDesc,
+   kitDesc,
 
-   userDesc // Last user defined
+   blinkAlt1Desc, blinkAlt2Desc, blinkAlt3Desc, fixedDesc,
+   // Last all blink
+   blinkDesc
+
 };
 
 // Predefined programs
 t_sequenceDesc *demoSequence[] =
-{ allFixed, airplane1, airplane2, helicopter, emergencyCar1, emergencyCar2,
-   gunShot1, gunShot2, diorama1, diorama2, diorama3, diorama4, blink, chaser1,
-   chaser2, allFlicker,
+{ user, airplane1, airplane2, helicopter, emergencyCar1, emergencyCar2,
+   gunShot1, gunShot2, diorama1, diorama2, diorama3, diorama4, chaser1,
+   chaser2, countDownSeq, ncountDownSeq, allFlicker, allFastBlick, falconLights,
+   cylonRaider, cylonRaiderInv, kit,
 
-   user // Last user defined
+   blinkAltern1,blinkAltern2, blinkAltern3, allFixed,
+   // Last all blink
+   blink
 };
 
 

@@ -18,7 +18,9 @@ uint16_t doubleBlink270[] = { 0b0000000000000000, 0b0000000011111111, 0b00000000
 
 // Long blinks
 uint16_t blink0[]   = { 0b1111111111111111, 0b0000000000000000 }; // 0 shift
+uint16_t blink45[]  = { 0b0000111111111111, 0b1111000000000000 }; // 45 shift
 uint16_t blink90[]  = { 0b0000000011111111, 0b1111111100000000 }; // 90 shift
+uint16_t blink135[] = { 0b0000000000001111, 0b1111111111110000 }; // 135 shift
 uint16_t blink180[] = { 0b0000000000000000, 0b1111111111111111 };   // 180 shift
 uint16_t blink270[] = { 0b1111111100000000, 0b0000000011111111 };   // 270 shift
 
@@ -32,6 +34,41 @@ uint16_t blinkP90b[]  = { 0b0000000000000000, 0b0000000000000000, 0b000000001111
 uint16_t blinkP180b[] = { 0b0000000000000000, 0b0000000000000000, 0b0000000000000000, 0b1111111111111111 };   // 180 shift
 uint16_t blinkP270b[] = { 0b1111111100000000, 0b0000000000000000, 0b0000000000000000, 0b0000000011111111 };   // 270 shift
 
+
+// Chaser
+uint16_t chaser_1[] = { 0b1111111110000000, 0b0000000000000000, 0b0000000000000000, 0b0000000000000000, 0b0000000000000000, 0b0000000111111111 }; // chaser 1
+uint16_t chaser_2[] = { 0b0000000111111111, 0b1000000000000000, 0b0000000000000000, 0b0000000000000000, 0b0000000000000001, 0b1111111110000000 }; // chaser 2
+uint16_t chaser_3[] = { 0b0000000000000001, 0b1111111110000000, 0b0000000000000000, 0b0000000000000000, 0b0000000111111111, 0b1000000000000000 }; // chaser 3
+uint16_t chaser_4[] = { 0b0000000000000000, 0b0000000111111111, 0b1000000000000000, 0b0000000000000001, 0b1111111110000000, 0b0000000000000000 }; // chaser 4
+uint16_t chaser_5[] = { 0b0000000000000000, 0b0000000000000001, 0b1111111110000000, 0b0000000111111111, 0b1000000000000000, 0b0000000000000000 }; // chaser 5
+uint16_t chaser_6[] = { 0b0000000000000000, 0b0000000000000000, 0b0000000111111111, 0b1111111110000000, 0b0000000000000000, 0b0000000000000000 }; // chaser 6
+
+// Chaser inv
+uint16_t nchaser_1[] = { (uint16_t)~0b1111111110000000, (uint16_t)~0b0000000000000000, (uint16_t)~0b0000000000000000, (uint16_t)~0b0000000000000000, (uint16_t)~0b0000000000000000, (uint16_t)~0b0000000111111111 }; // chaser 1
+uint16_t nchaser_2[] = { (uint16_t)~0b0000000111111111, (uint16_t)~0b1000000000000000, (uint16_t)~0b0000000000000000, (uint16_t)~0b0000000000000000, (uint16_t)~0b0000000000000001, (uint16_t)~0b1111111110000000 }; // chaser 2
+uint16_t nchaser_3[] = { (uint16_t)~0b0000000000000001, (uint16_t)~0b1111111110000000, (uint16_t)~0b0000000000000000, (uint16_t)~0b0000000000000000, (uint16_t)~0b0000000111111111, (uint16_t)~0b1000000000000000 }; // chaser 3
+uint16_t nchaser_4[] = { (uint16_t)~0b0000000000000000, (uint16_t)~0b0000000111111111, (uint16_t)~0b1000000000000000, (uint16_t)~0b0000000000000001, (uint16_t)~0b1111111110000000, (uint16_t)~0b0000000000000000 }; // chaser 4
+uint16_t nchaser_5[] = { (uint16_t)~0b0000000000000000, (uint16_t)~0b0000000000000001, (uint16_t)~0b1111111110000000, (uint16_t)~0b0000000111111111, (uint16_t)~0b1000000000000000, (uint16_t)~0b0000000000000000 }; // chaser 5
+uint16_t nchaser_6[] = { (uint16_t)~0b0000000000000000, (uint16_t)~0b0000000000000000, (uint16_t)~0b0000000111111111, (uint16_t)~0b1111111110000000, (uint16_t)~0b0000000000000000, (uint16_t)~0b0000000000000000 }; // chaser 6
+
+// Count down
+uint16_t countDown1[] = { 0b0111111111111111 };
+uint16_t countDown2[] = { 0b0001111111111111 };
+uint16_t countDown3[] = { 0b0000011111111111 };
+uint16_t countDown4[] = { 0b0000000111111111 };
+uint16_t countDown5[] = { 0b0000000001111111 };
+uint16_t countDown6[] = { 0b0000000000011111 };
+uint16_t countDown7[] = { 0b0000000000000111 };
+uint16_t countDown8[] = { 0b0000000000000001 };
+
+uint16_t ncountDown1[] = { (uint16_t)~0b0111111111111111 };
+uint16_t ncountDown2[] = { (uint16_t)~0b0001111111111111 };
+uint16_t ncountDown3[] = { (uint16_t)~0b0000011111111111 };
+uint16_t ncountDown4[] = { (uint16_t)~0b0000000111111111 };
+uint16_t ncountDown5[] = { (uint16_t)~0b0000000001111111 };
+uint16_t ncountDown6[] = { (uint16_t)~0b0000000000011111 };
+uint16_t ncountDown7[] = { (uint16_t)~0b0000000000000111 };
+uint16_t ncountDown8[] = { (uint16_t)~0b0000000000000001 };
 
 // Fast blink
 uint16_t fastBlink0[]     = { 0b1111111100000000 };  // 0 shift
@@ -75,7 +112,6 @@ uint16_t burstLP0[]  = {0b0100010111010111, 0b0000000000000000, 0b00000000000000
 uint16_t burstLP1[]  = {0b1011101000101000, 0b0000000000000000, 0b0000000000000000};
 uint16_t burstLP0_90[]  = {0b0000000000000000, 0b0100010111010111, 0b0000000000000000};
 uint16_t burstLP1_90[]  = {0b0000000000000000, 0b1011101000101000, 0b0000000000000000};
-
 
 
 typedef struct
@@ -130,6 +166,37 @@ typedef struct
 #define BLINKP_90B          42
 #define BLINKP_180B         43
 #define BLINKP_270B         44
+#define CHASER_1            45
+#define CHASER_2            46
+#define CHASER_3            47
+#define CHASER_4            48
+#define CHASER_5            49
+#define CHASER_6            50
+#define NCHASER_1           51
+#define NCHASER_2           52
+#define NCHASER_3           53
+#define NCHASER_4           54
+#define NCHASER_5           55
+#define NCHASER_6           56
+#define COUNT1              57
+#define COUNT2              58
+#define COUNT3              59
+#define COUNT4              60
+#define COUNT5              61
+#define COUNT6              62
+#define COUNT7              63
+#define COUNT8              64
+#define NCOUNT1             65
+#define NCOUNT2             66
+#define NCOUNT3             67
+#define NCOUNT4             68
+#define NCOUNT5             69
+#define NCOUNT6             70
+#define NCOUNT7             71
+#define NCOUNT8             72
+
+#define BLINK_45            73
+#define BLINK_135           74
 
 #define SET_SEQUENCE(seq) seq, sizeof(seq)
 
@@ -192,6 +259,41 @@ t_sequence sequenceList[] =
    {SET_SEQUENCE(blinkP90b)},   // 42
    {SET_SEQUENCE(blinkP180b)},  // 43
    {SET_SEQUENCE(blinkP270b)},   // 44
+
+   {SET_SEQUENCE(chaser_1)},   // 45
+   {SET_SEQUENCE(chaser_2)},   // 46
+   {SET_SEQUENCE(chaser_3)},   // 47
+   {SET_SEQUENCE(chaser_4)},   // 48
+   {SET_SEQUENCE(chaser_5)},   // 49
+   {SET_SEQUENCE(chaser_6)},   // 50
+
+   {SET_SEQUENCE(nchaser_1)},   // 51
+   {SET_SEQUENCE(nchaser_2)},   // 52
+   {SET_SEQUENCE(nchaser_3)},   // 53
+   {SET_SEQUENCE(nchaser_4)},   // 54
+   {SET_SEQUENCE(nchaser_5)},   // 55
+   {SET_SEQUENCE(nchaser_6)},   // 56
+
+   {SET_SEQUENCE(countDown1)},   // 57
+   {SET_SEQUENCE(countDown2)},   // 58
+   {SET_SEQUENCE(countDown3)},   // 59
+   {SET_SEQUENCE(countDown4)},   // 60
+   {SET_SEQUENCE(countDown5)},   // 61
+   {SET_SEQUENCE(countDown6)},   // 62
+   {SET_SEQUENCE(countDown7)},   // 63
+   {SET_SEQUENCE(countDown8)},   // 64
+
+   {SET_SEQUENCE(ncountDown1)},   // 65
+   {SET_SEQUENCE(ncountDown2)},   // 66
+   {SET_SEQUENCE(ncountDown3)},   // 67
+   {SET_SEQUENCE(ncountDown4)},   // 68
+   {SET_SEQUENCE(ncountDown5)},   // 69
+   {SET_SEQUENCE(ncountDown6)},   // 70
+   {SET_SEQUENCE(ncountDown7)},   // 71
+   {SET_SEQUENCE(ncountDown8)},   // 72
+
+   {SET_SEQUENCE(blink45)},       // 73
+   {SET_SEQUENCE(blink135)}       // 74
 
 };
 

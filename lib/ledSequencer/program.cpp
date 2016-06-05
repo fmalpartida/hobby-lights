@@ -17,6 +17,7 @@ ledSequence _myChannels[LEDS_ON_BOARD];
 static uint8_t _channelsAvail;  // number of available slots
 static uint8_t _used;           // number of used slots
 static uint16_t _period;        // Wait delay after playing the entire sequence
+static uint16_t _currentPeriod; // Current period counter
 Storage store;                  // Added support for persisten storage
 
 
@@ -43,50 +44,71 @@ void program::init(int period)
    {
       _period = store.getPeriod();
    }
+   _currentPeriod = _period; // Load the current period counter
+
+   progInMem = store.getProgram();
 
    // Setup initial program
-   loadProgram(store.getProgram());
+   loadProgram(progInMem, false);
 }
 
 void program::playProgram( )
 {
-   for ( int i = 0; i < _used ; i++ )
+   if ( _currentPeriod == 0)
    {
-      _myChannels[i].playNext();
+      for ( int i = 0; i < _used ; i++ )
+      {
+         _myChannels[i].playNext();
+      }
+      _currentPeriod = _period; // reload the period counter
    }
-   delay(_period);
+   _currentPeriod--;
    //Serial.println();
 }
 
-void program::loadProgram(uint8_t progID)
+void program::loadProgram(uint8_t progID, bool save)
 {
+   progInMem = progID;
+#if 0
+   Serial.print("Program: ");
+   Serial.println(progInMem);
+#endif
    for ( uint8_t i=0; i < LEDS_ON_BOARD; i++)
    {
       _myChannels[i].setLed((int)demoSequence[progID][i].led);
       _myChannels[i].setSequence(sequenceList[demoSequence[progID][i].seqIndex].sequence,
          sequenceList[demoSequence[progID][i].seqIndex].seqSize);
-      //Serial.print("Program: ");
-      //Serial.println(progID);
-      //Serial.print("LED: ");
-      //Serial.println(demoSequence[progID][i].led);
-      //Serial.print("Sequence: ");
-      //Serial.println( demoSequence[progID][i].seqIndex);
-      //Serial.println( "------");
+
    }
    _used = LEDS_ON_BOARD;
-   store.setProgram(progID);
+
+   if (save)
+   {
+      store.setProgram(progID);
+   }
 }
 
 
-void program::setPeriod(uint16_t period)
+void program::setPeriod(uint16_t period, bool save)
 {
-   _period = period;
-   store.setPeriod(period);
+   if ( period > 0)
+   {
+      _period = period;
+   }
+   if (save)
+   {
+      store.setPeriod(period);
+   }
 }
 
 uint16_t program::getPeriod()
 {
    return (_period);
+}
+
+uint16_t program::getStorePeriod()
+{
+   return (store.getPeriod());
 }
 
 uint16_t program::getNumPrograms()
@@ -95,6 +117,11 @@ uint16_t program::getNumPrograms()
 }
 
 uint16_t program::getCurrentProgram()
+{
+   return (progInMem);
+}
+
+uint16_t program::getStoreProgram()
 {
    return (store.getProgram());
 }
