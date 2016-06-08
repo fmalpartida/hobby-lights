@@ -12194,7 +12194,7 @@ JST PH 2-pin thru-home side entry</description>
 <part name="S1" library="SAVMakerI" deviceset="SPARKFUN_TAC_SWITCH" device="SMD" value="microswitch"/>
 <part name="S2" library="SAVMakerI" deviceset="SPARKFUN_TAC_SWITCH" device="SMD" value="microswitch"/>
 <part name="U$4" library="fmc" deviceset="AVR_ICSP" device=""/>
-<part name="C13" library="rcl" deviceset="C-EU" device="C0603" value="0.1uF"/>
+<part name="C13" library="fmc" deviceset="C-EU" device="C0603" value="0.1uF"/>
 <part name="C14" library="fmc" deviceset="C-EU" device="C0603" value="0.1uF"/>
 <part name="GND25" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND27" library="SparkFun" deviceset="GND" device=""/>
