@@ -70,6 +70,22 @@ uint16_t ncountDown6[] = { (uint16_t)~0b0000000000011111 };
 uint16_t ncountDown7[] = { (uint16_t)~0b0000000000000111 };
 uint16_t ncountDown8[] = { (uint16_t)~0b0000000000000001 };
 
+// Traffic lights (US and UK)
+uint16_t trafGre1US[] = {0b1111111111111111, 0b1111110000000000, 0b0000000000000000, 0b0000000000000000 };
+uint16_t trafYel1US[] = {0b0000000000000000, 0b0000001111110000, 0b0000000000000000, 0b0000000000000000 };
+uint16_t trafRed1US[] = {0b0000000000000000, 0b0000000000001111, 0b1111111111111111, 0b1111111111111111 };
+uint16_t trafGre2US[] = {0b0000000000000000, 0b0000000000000000, 0b1111111111111111, 0b1111110000000000 };
+uint16_t trafYel2US[] = {0b0000000000000000, 0b0000000000000000, 0b0000000000000000, 0b0000001111110000 };
+uint16_t trafRed2US[] = {0b1111111111111111, 0b1111111111111111, 0b0000000000000000, 0b0000000000001111 };
+
+uint16_t trafGre1UK[] = {0b1111111111111111, 0b1111110000000000, 0b0000000000000000, 0b0000000000000000 };
+uint16_t trafYel1UK[] = {0b0000000000000000, 0b0000001111110000, 0b0000000000000000, 0b0000000000000011 };
+uint16_t trafRed1UK[] = {0b0000000000000000, 0b0000000000001111, 0b1111111111111111, 0b1111111111111111 };
+uint16_t trafGre2UK[] = {0b0000000000000000, 0b0000000000000000, 0b1111111111111111, 0b1111110000000000 };
+uint16_t trafYel2UK[] = {0b0000000000000000, 0b0000000000000011, 0b0000000000000000, 0b0000001111110000 };
+uint16_t trafRed2UK[] = {0b1111111111111111, 0b1111111111111111, 0b0000000000000000, 0b0000000000001111 };
+
+
 // Fast blink
 uint16_t fastBlink0[]     = { 0b1111111100000000 };  // 0 shift
 uint16_t fastBlink90[]    = { 0b0000111111110000 }; // 90 shift
@@ -104,6 +120,7 @@ uint16_t randFlikerLP0[]   = { 0b0100010111010111, 0b0010011100101010, 0b0000000
 uint16_t randFlikerLP180[] = { 0b0010011100101010, 0b0100010111010111,  0b0000000000000000, 0b0000000000000000 };
 
 // Bursts
+// -----------------------------------------------------------------------------
 uint16_t burst0[]  = {0b0100010111010111, 0b0000000000000000};
 uint16_t burst1[]  = {0b1011101000101000, 0b0000000000000000};
 uint16_t burst0_90[]  = {0b0000000000000000, 0b0100010111010111};
@@ -194,9 +211,22 @@ typedef struct
 #define NCOUNT6             70
 #define NCOUNT7             71
 #define NCOUNT8             72
+#define TRAFGRE1US          73
+#define TRAFYEL1US          74
+#define TRAFRED1US          75
+#define TRAFGRE2US          76
+#define TRAFYEL2US          77
+#define TRAFRED2US          78
+#define TRAFGRE1UK          79
+#define TRAFYEL1UK          80
+#define TRAFRED1UK          81
+#define TRAFGRE2UK          82
+#define TRAFYEL2UK          83
+#define TRAFRED2UK          84
 
-#define BLINK_45            73
-#define BLINK_135           74
+
+#define BLINK_45            85
+#define BLINK_135           86
 
 #define SET_SEQUENCE(seq) seq, sizeof(seq)
 
@@ -292,8 +322,22 @@ t_sequence sequenceList[] =
    {SET_SEQUENCE(ncountDown7)},   // 71
    {SET_SEQUENCE(ncountDown8)},   // 72
 
-   {SET_SEQUENCE(blink45)},       // 73
-   {SET_SEQUENCE(blink135)}       // 74
+   {SET_SEQUENCE(trafGre1US)},    // 73
+   {SET_SEQUENCE(trafYel1US)},    // 74
+   {SET_SEQUENCE(trafRed1US)},    // 75
+   {SET_SEQUENCE(trafGre2US)},    // 76
+   {SET_SEQUENCE(trafYel2US)},    // 77
+   {SET_SEQUENCE(trafRed2US)},    // 78
+
+   {SET_SEQUENCE(trafGre1UK)},    // 79
+   {SET_SEQUENCE(trafYel1UK)},    // 80
+   {SET_SEQUENCE(trafRed1UK)},    // 81
+   {SET_SEQUENCE(trafGre2UK)},    // 82
+   {SET_SEQUENCE(trafYel2UK)},    // 83
+   {SET_SEQUENCE(trafRed2UK)},    // 84
+
+   {SET_SEQUENCE(blink45)},       // 85
+   {SET_SEQUENCE(blink135)}       // 86
 
 };
 
